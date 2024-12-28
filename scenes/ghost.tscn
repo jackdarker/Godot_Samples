@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxh5v7u36fjlf"]
+
+[ext_resource type="Script" path="res://scenes/ghost.gd" id="1_lte8w"]
+[ext_resource type="Texture2D" uid="uid://caxiqstxdqymx" path="res://assets/spr_ghost_orange_0.png" id="1_v3w1g"]
+[ext_resource type="Texture2D" uid="uid://dyn1qbcq5ibum" path="res://assets/spr_ghost_orange_1.png" id="2_yk4u1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o3ovd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v3w1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yk4u1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ea4di"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4lyk"]
+
+[node name="Ghost" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_lte8w")
+metadata/faction = 2
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.59375, 0.625)
+sprite_frames = SubResource("SpriteFrames_o3ovd")
+frame = 1
+frame_progress = 0.248161
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ea4di")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_r4lyk")
+debug_color = Color(0.550774, 0.464805, 0.832427, 0.42)

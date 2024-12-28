@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cebipfg1vjhof"]
+
+[ext_resource type="FontFile" uid="uid://ch2qmpdjqls18" path="res://assets/fonts/Xolonium-Regular-dc1d20fa.ttf" id="1_8hx6q"]
+[ext_resource type="Script" path="res://scenes/pause_screen.gd" id="1_dgfuc"]
+[ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_garvr"]
+[ext_resource type="AudioStream" uid="uid://cmc1m6r0ti3ls" path="res://assets/audio/Select 1.wav" id="4_s7nol"]
+
+[sub_resource type="Theme" id="Theme_uccny"]
+
+[node name="pause_screen" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_dgfuc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 104.0
+grow_horizontal = 2
+theme = SubResource("Theme_uccny")
+theme_override_font_sizes/font_size = 34
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -35.0
+offset_right = 150.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="btResume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_garvr")
+theme_override_fonts/font = ExtResource("1_8hx6q")
+theme_override_font_sizes/font_size = 20
+text = "Resume"
+
+[node name="btQuit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_garvr")
+theme_override_font_sizes/font_size = 20
+text = "Quit Game"
+
+[node name="SoundSelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s7nol")
+
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/btResume" to="." method="_on_bt_focus_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/btResume" to="." method="_on_bt_resume_pressed"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/btQuit" to="." method="_on_bt_focus_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/btQuit" to="." method="_on_bt_quit_pressed"]
