@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bxh5v7u36fjlf"]
 
 [ext_resource type="Script" path="res://scenes/ghost.gd" id="1_lte8w"]
-[ext_resource type="Texture2D" uid="uid://caxiqstxdqymx" path="res://assets/spr_ghost_orange_0.png" id="1_v3w1g"]
-[ext_resource type="Texture2D" uid="uid://dyn1qbcq5ibum" path="res://assets/spr_ghost_orange_1.png" id="2_yk4u1"]
+[ext_resource type="Texture2D" uid="uid://caxiqstxdqymx" path="res://assets/sprites/spr_ghost_orange_0.png" id="1_v3w1g"]
+[ext_resource type="Texture2D" uid="uid://dyn1qbcq5ibum" path="res://assets/sprites/spr_ghost_orange_1.png" id="2_yk4u1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o3ovd"]
 animations = [{
@@ -24,6 +24,7 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4lyk"]
 
 [node name="Ghost" type="CharacterBody2D"]
+collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_lte8w")
 metadata/faction = 2

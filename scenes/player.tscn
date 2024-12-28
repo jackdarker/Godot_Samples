@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://bthiqlsn0fnek"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_mkfal"]
-[ext_resource type="Texture2D" uid="uid://cffp0mg653pty" path="res://assets/pacman.png" id="2_sq3c4"]
+[ext_resource type="Texture2D" uid="uid://cffp0mg653pty" path="res://assets/sprites/pacman.png" id="2_sq3c4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ibum"]
 atlas = ExtResource("2_sq3c4")
@@ -114,13 +114,14 @@ animations = [{
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5wm3"]
-radius = 24.0
+radius = 14.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_mkfal")
 metadata/Faction = 1
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7gx5o")
@@ -132,9 +133,11 @@ shape = SubResource("CircleShape2D_rn4eb")
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_l5wm3")
 debug_color = Color(0.550774, 0.464805, 0.832427, 0.42)
 
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
