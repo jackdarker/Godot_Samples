@@ -27,12 +27,20 @@ func _physics_process(delta: float) -> void:
 		if direction_y < 0:
 			anim.play("up")
 	move_and_slide()
-
-
+	
+func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	print("hit3")
+	if area.is_in_group("Items"):
+		Global.score+=1
+		area.queue_free()
+	elif area.is_in_group("Ghosts"):
+		character_reset()
+		
+	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var faction:int=body.get_meta("faction",0)
 	if(faction!=0):
-		character_reset()
+		pass #character_reset()
 
 func character_reset() -> void:
 	position = initial_position
@@ -41,8 +49,4 @@ func character_reset() -> void:
 	if lives <= 0:
 		#get_node("/root/Pack-man/Lives/SprLifecounter0").visible = false
 		get_tree().paused = true
-		get_node("/root/Pack-man/GameOver").visible = true
-
-
-func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	print("hit2")
+		get_node("/root/Level/game_over_screen").visible = true

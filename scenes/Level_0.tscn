@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c3u6qsi47alkn"]
+[gd_scene load_steps=11 format=4 uid="uid://c3u6qsi47alkn"]
 
 [ext_resource type="Texture2D" uid="uid://bbkf15iyec1wh" path="res://assets/sprites/background2.png" id="1_6d4u8"]
 [ext_resource type="PackedScene" uid="uid://d3eeqxp0nyj4s" path="res://scenes/pill.tscn" id="1_ieyx4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/level_0.gd" id="1_w2bro"]
 [ext_resource type="PackedScene" uid="uid://cebipfg1vjhof" path="res://scenes/pause_screen.tscn" id="2_amq2j"]
 [ext_resource type="PackedScene" uid="uid://bthiqlsn0fnek" path="res://scenes/player.tscn" id="2_lbk76"]
+[ext_resource type="PackedScene" uid="uid://b7haxlf1ebksd" path="res://scenes/game_over_screen.tscn" id="2_vcpb5"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_tc1yg"]
 tile_data = PackedInt32Array(0, 1, 3, 65536, 1, 4, 131072, 1, 2, 1, 327681, 3, 65537, 327681, 3, 131073, 327681, 3)
@@ -349,6 +350,8 @@ pattern_0 = SubResource("TileMapPattern_tc1yg")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_w2bro")
+
+[node name="game_over_screen" parent="." instance=ExtResource("2_vcpb5")]
 
 [node name="pause_screen" parent="." instance=ExtResource("2_amq2j")]
 

@@ -11,14 +11,23 @@ config_version=5
 [application]
 
 config/name="PacMan"
-run/main_scene="res://scenes/Level_0.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scenes/global_script.gd"
 
 [display]
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+
+[global_group]
+
+Items=""
+Ghosts=""
 
 [input]
 

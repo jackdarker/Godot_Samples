@@ -11,5 +11,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	#print("hit2")
+	print("hit2")
 	queue_free()

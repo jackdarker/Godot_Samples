@@ -23,7 +23,7 @@ radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4lyk"]
 
-[node name="Ghost" type="CharacterBody2D"]
+[node name="Ghost" type="CharacterBody2D" groups=["Ghosts"]]
 collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_lte8w")
@@ -39,7 +39,8 @@ frame_progress = 0.248161
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ea4di")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["Ghosts"]]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_r4lyk")

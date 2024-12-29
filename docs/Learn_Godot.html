@@ -7,18 +7,92 @@
 	<META NAME="AUTHOR" CONTENT="jk jk">
 	<META NAME="CREATED" CONTENT="20241227;9445622">
 	<META NAME="CHANGEDBY" CONTENT="jk jk">
-	<META NAME="CHANGED" CONTENT="20241227;10311898">
+	<META NAME="CHANGED" CONTENT="20241229;15375954">
 	<STYLE TYPE="text/css">
 	<!--
 		@page { margin: 2cm }
+		H1 { text-decoration: underline }
+		H1.western { font-family: "Arial", sans-serif }
+		H1.cjk { font-size: 14pt; font-weight: normal }
+		H1.ctl { font-size: 14pt; font-weight: normal }
 		P { margin-bottom: 0.21cm; background: transparent }
 		P.western { font-family: "Arial", sans-serif }
+		H2 { text-decoration: underline }
+		H2.western { font-family: "Arial", sans-serif }
+		H2.cjk { font-family: "SimSun" }
+		H2.ctl { font-family: "Lucida Sans"; font-weight: normal }
 		A:link { so-language: zxx }
 	-->
 	</STYLE>
 </HEAD>
 <BODY LANG="en-GB" DIR="LTR">
-<P CLASS="western" STYLE="margin-bottom: 0cm"><BR>
+<P CLASS="western" STYLE="margin-bottom: 0cm; background: transparent; font-style: normal">
+<FONT FACE="Arial, sans-serif"><FONT SIZE=6><B>Learn Godot 4.x</B></FONT></FONT></P>
+<P STYLE="margin-top: 0.42cm; margin-bottom: 0.5cm; background: transparent; page-break-after: avoid">
+<BR><BR>
 </P>
+<H1 CLASS="western">Setting up Godot</H1>
+<UL>
+	<LI><P CLASS="western">download and unzip, runs without install</P>
+	<LI><P CLASS="western">export templates need to be installed
+	Editor-&gt; Manage Export Templates 
+	</P>
+	<LI><P CLASS="western">they are stored in
+	C:\Users\&lt;user&gt;\AppData\Roaming\Godot\export_templates\4.3.stable</P>
+</UL>
+<P CLASS="western"><BR><BR>
+</P>
+<H1 CLASS="western">Creating a 2D top-down pixel game (similar to
+Pacman)</H1>
+<H2 CLASS="western">Initialize project</H2>
+<H2 CLASS="western">Create a level</H2>
+<H2 CLASS="western">Add a Pause-Menu</H2>
+<P CLASS="western">Instead of creating a separate scene, the
+Pause-Menu is just a CanvasLayer of the Level-Scene. It is shown in
+Pause-mode and otherwise hidden.</P>
+<P CLASS="western">Also the game-tree will be set to pause to stop
+processing of game-engine. 
+</P>
+<H2 CLASS="western">Create a Main-Menu</H2>
+<P CLASS="western">The Main-Menu is a Scene containing a CanvasLayers
+with Buttons to switch to the Level-Scene.</P>
+<P CLASS="western"><BR><BR>
+</P>
+<UL>
+	<LI><P CLASS="western">you need to adjust the main scene in
+	Project-&gt;Project Settings-&gt; Application-&gt;Run</P>
+</UL>
+<P CLASS="western"><BR><BR>
+</P>
+<H1 CLASS="western">Hints for general workflow</H1>
+<H2 CLASS="western">Connecting Signals</H2>
+<UL>
+	<LI><P CLASS="western">multiple signals can connect to same function</P>
+</UL>
+<P CLASS="western"><BR><BR>
+</P>
+<H2 CLASS="western">Collision Handling</H2>
+<UL>
+	<LI><P CLASS="western">the CharacterBody has a CollsionShape that is
+	used to interact with the Level-Obstacles</P>
+	<LI><P CLASS="western">you might want to add additional Area2D to
+	detect interaction with other parts of the game (sensor-ray,
+	collecting items,...)</P>
+	<LI><P CLASS="western">Note: overlapping Collsionshape of the SAME
+	Node will cause the body_entered Signal to fire. Unless you
+	configure the Mask &amp; Layer of the area to filter it</P>
+</UL>
+<UL>
+	<LI><P CLASS="western">if the root-node is Area2D instead of
+	RigidBody2D, you have to use on area2d_shape_entered instead of
+	body_entered</P>
+</UL>
+<H1 CLASS="western">Exporting a project</H1>
+<H2 CLASS="western">Exporting as HTML5-webpage</H2>
+<P CLASS="western">You need to serve the content with a webserver,
+just opening the html in browser doesnt work !</P>
+<UL>
+	<P CLASS="western"><META NAME="CHANGEDBY" CONTENT="jk jk"></P>
+</UL>
 </BODY>
 </HTML>
