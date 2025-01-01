@@ -8,7 +8,7 @@
 [sub_resource type="Theme" id="Theme_uccny"]
 
 [node name="pause_screen" type="CanvasLayer"]
-process_mode = 3
+process_mode = 2
 script = ExtResource("1_dgfuc")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -46,12 +46,6 @@ grow_vertical = 2
 layout_mode = 2
 alignment = 1
 
-[node name="btQuit2" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_garvr")
-theme_override_font_sizes/font_size = 20
-text = "Quit Game"
-
 [node name="btResume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_garvr")
@@ -68,8 +62,6 @@ text = "Quit Game"
 [node name="SoundSelect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_s7nol")
 
-[connection signal="focus_entered" from="MarginContainer/VBoxContainer/btQuit2" to="." method="_on_bt_focus_entered"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/btQuit2" to="." method="_on_bt_quit_2_pressed"]
 [connection signal="focus_entered" from="MarginContainer/VBoxContainer/btResume" to="." method="_on_bt_focus_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/btResume" to="." method="_on_bt_resume_pressed"]
 [connection signal="focus_entered" from="MarginContainer/VBoxContainer/btQuit" to="." method="_on_bt_focus_entered"]

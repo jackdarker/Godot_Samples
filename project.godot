@@ -24,6 +24,10 @@ Global="*res://scenes/global_script.gd"
 window/size/viewport_width=800
 window/size/viewport_height=600
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/YATI/plugin.cfg")
+
 [global_group]
 
 Items=""

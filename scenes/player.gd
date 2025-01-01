@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	print("hit3")
 	if area.is_in_group("Items"):
-		Global.score+=1
+		Global.scoreChange(10)
 		area.queue_free()
 	elif area.is_in_group("Ghosts"):
 		character_reset()

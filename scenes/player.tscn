@@ -114,7 +114,7 @@ animations = [{
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5wm3"]
-radius = 14.0
+radius = 8.06226
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1

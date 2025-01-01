@@ -13,4 +13,4 @@ func _on_bt_resume_pressed() -> void:
 
 
 func _on_bt_quit_pressed() -> void:
-	Global.goto_scene("res://Scenes/main_menu.tscn")
+	Global.goto_scene("res://scenes/main_menu.tscn")

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/pill.gd" id="1_th24w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pesxs"]
-radius = 5.0
+radius = 3.0
 
 [node name="Pill" type="Area2D" groups=["Items"]]
 collision_layer = 3
@@ -14,6 +14,7 @@ metadata/_edit_group_ = true
 metadata/faction = 3
 
 [node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_21usx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

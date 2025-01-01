@@ -75,3 +75,4 @@ stream = ExtResource("4_ot0x6")
 [connection signal="focus_entered" from="CanvasLayer/MarginContainer/VBoxContainer/btStart" to="." method="_on_bt_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/btStart" to="." method="_on_bt_start_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/MarginContainer/VBoxContainer/btQuit" to="." method="_on_bt_focus_entered"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/btQuit" to="." method="_on_bt_quit_pressed"]
