@@ -139,5 +139,7 @@ metadata/_edit_lock_ = true
 shape = SubResource("CircleShape2D_l5wm3")
 debug_color = Color(0.550774, 0.464805, 0.832427, 0.42)
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

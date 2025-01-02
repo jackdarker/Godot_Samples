@@ -3,14 +3,17 @@ extends Node
 var save_file = "user://GodotSample.save"
 var score:int=0
 
+signal scare(on:bool)
 signal score_changed(change)
 func scoreChange(change):
-	score+=change
+	score+=change*Bonus
 	emit_signal("score_changed", change)
-	
+
+var Bonus:int=1
+
 var current_scene = null
 
-enum MODE{CHASE,SCATTER,FRIGHTENED}
+enum MODE{SLEEP,CHASE,SCATTER,FRIGHTENED,RUN}
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,
@@ -40,8 +43,6 @@ func _deferred_goto_scene(path):
 func _ready() -> void:
 	var root = get_tree().root
 	# Using a negative index counts from the end, so this gets the last child node of `root`.
-	current_scene = root.get_child(-1)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

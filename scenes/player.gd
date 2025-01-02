@@ -6,6 +6,7 @@ extends CharacterBody2D
 const SPEED = 100.0
 var lives = 1 #Pac-man lives counter
 
+const PPill = preload("res://scenes/powerpill.gd")
 
 func _physics_process(delta: float) -> void:
 	var direction_x = Input.get_axis("move_left", "move_right")
@@ -29,13 +30,19 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	print("hit3")
+	#print("hit3")
 	if area.is_in_group("Items"):
-		Global.scoreChange(10)
-		area.queue_free()
+		if(area is PPill):
+			pass #$SoundPowerup.play()
+		area.pickup()
 	elif area.is_in_group("Ghosts"):
-		character_reset()
-		
+		var _foe=area.get_parent()
+		if(_foe.Mode==Global.MODE.FRIGHTENED):
+			_foe.kill()
+		elif(_foe.Mode==Global.MODE.RUN):
+			pass
+		else:
+			character_reset()
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var faction:int=body.get_meta("faction",0)

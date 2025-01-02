@@ -1,15 +1,12 @@
 extends Area2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func pickup()->void:
+	self.visible=false
+	$SoundPickup.play()
+	Global.scoreChange(10)
+	#queue_free()  this would stop the sound
 
 
-func _on_body_entered(body: Node2D) -> void:
-	queue_free()
-
-
-func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	print("hit2")
-	queue_free()
+#func _on_sound_pickup_finished() -> void:
+#	queue_free()

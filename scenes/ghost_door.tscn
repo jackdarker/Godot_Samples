@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0aqfcw0pq0s0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7h71"]
+size = Vector2(32, 16)
+
+[sub_resource type="Gradient" id="Gradient_24w8d"]
+offsets = PackedFloat32Array(0, 0.990196)
+colors = PackedColorArray(0.707967, 0.707967, 0.707967, 1, 0.709804, 0.709804, 0.709804, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6uumr"]
+gradient = SubResource("Gradient_24w8d")
+
+[node name="GhostDoor" type="StaticBody2D"]
+editor_description = "chars can pass through upways but not downways"
+collision_layer = 7
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w7h71")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15625, 7.5)
+texture = SubResource("GradientTexture1D_6uumr")
