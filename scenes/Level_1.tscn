@@ -772,12 +772,13 @@ pattern_1 = SubResource("TileMapPattern_n04gv")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ls06j"]
 size = Vector2(8, 20)
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" groups=["Persist"]]
 script = ExtResource("1_yfkkc")
 
 [node name="HUD" parent="." instance=ExtResource("2_7ew30")]
 
 [node name="ReadyCounter" parent="." instance=ExtResource("3_4vjbi")]
+visible = false
 
 [node name="game_over_screen" parent="." instance=ExtResource("3_0yi2e")]
 visible = false
@@ -815,15 +816,25 @@ position = Vector2(416, 288)
 position = Vector2(312, 224)
 
 [node name="GhostRed" parent="Foes" node_paths=PackedStringArray("home", "target") instance=ExtResource("5_vdfls")]
-position = Vector2(336, 256)
+position = Vector2(344, 264)
+maxSpeed = null
+Type = null
+home = NodePath("../GhostHome")
+target = NodePath("../../Player")
+
+[node name="GhostRed2" parent="Foes" node_paths=PackedStringArray("home", "target") instance=ExtResource("5_vdfls")]
+position = Vector2(408, 264)
+maxSpeed = null
+Type = 1
 home = NodePath("../GhostHome")
 target = NodePath("../../Player")
 
 [node name="GhostBlue" parent="Foes" node_paths=PackedStringArray("home", "target") instance=ExtResource("5_vdfls")]
-position = Vector2(344, 288)
+position = Vector2(352, 288)
+maxSpeed = null
+Type = 1
 home = NodePath("../GhostHome")
 target = NodePath("../../Player")
-Type = 1
 
 [node name="Items" type="Node" parent="."]
 
@@ -1608,7 +1619,7 @@ position = Vector2(176, 416)
 position = Vector2(576, 416)
 
 [node name="Player" parent="." instance=ExtResource("8_4t1d5")]
-position = Vector2(544, 448)
+position = Vector2(376, 416)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(400, 298)

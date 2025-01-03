@@ -1,12 +1,18 @@
 extends Node
 
-var save_file = "user://GodotSample.save"
-var score:int=0
+var score:int
+var pills:int  #pills required
 
-signal scare(on:bool)
-signal score_changed(change)
-func scoreChange(change):
-	score+=change*Bonus
+#TODO show highscore
+
+signal scare(on:bool)	#fired when powerpill pickedup
+signal score_changed(change) #fired when score is increased
+signal bonus_changed(change) #fired when bonus multiplier increased
+signal player_death() 
+
+func scoreChange(change,pill):
+	score+=change
+	pills-=pill
 	emit_signal("score_changed", change)
 
 var Bonus:int=1
@@ -43,10 +49,7 @@ func _deferred_goto_scene(path):
 func _ready() -> void:
 	var root = get_tree().root
 	# Using a negative index counts from the end, so this gets the last child node of `root`.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	current_scene = root.get_child(-1)
 
 func quitGodot():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)

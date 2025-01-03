@@ -18,6 +18,16 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "0"
 
+[node name="Bonus" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -182.0
+offset_right = -153.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "0"
+
 [node name="Label" type="Label" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -26,7 +36,17 @@ offset_left = -135.0
 offset_right = -92.0
 offset_bottom = 23.0
 grow_horizontal = 0
-text = "Score"
+text = "Score:"
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -225.0
+offset_right = -182.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Bonus: x"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 material = SubResource("CanvasItemMaterial_ro6dt")

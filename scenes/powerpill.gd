@@ -8,9 +8,9 @@ func _ready() -> void:
 
 func pickup()->void:
 	self.visible=false
-	Global.scoreChange(50)
+	#self.process_mode=Node.PROCESS_MODE_DISABLED
+	Global.scoreChange(50,1)
 	Global.scare.emit(true)
-	Global.setBonus(4)
 	$Timer.stop() 
 	$Timer.start(6)
 	$SoundPowerup.play()

@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 enum TYPE{RED,BLUE,ORANGE,PINK}
 
-const SPEED = 80.0
+@export var maxSpeed:float = 80.0
+var speed:float
 @export var home:Node2D
 @export var target:Node2D
 @export var Type:TYPE=TYPE.RED
@@ -14,7 +15,8 @@ var Mode:Global.MODE = Global.MODE.SLEEP
 
 func reset()->void:
 	Mode=Global.MODE.SLEEP
-	#
+	speed=maxSpeed
+	#collide with walls
 	set_collision_mask_value(1, true)
 	set_collision_layer_value(1,true)
 	#set_collision_layer_value(1, false)
@@ -33,7 +35,7 @@ func reset()->void:
 
 func _physics_process(_delta):
 	var direction = to_local(nav_agent.get_next_path_position()).normalized()
-	velocity = direction * SPEED
+	velocity = direction * speed
 	move_and_slide()
 
 func _ready() -> void:
@@ -74,6 +76,7 @@ func _on_timer_timeout() -> void:
 				
 func _on_scare(on)-> void:
 	if(on):
+		speed=maxSpeed/2
 		anim.play("frightened")
 		Mode=Global.MODE.FRIGHTENED
 		nav_agent.target_position = home.global_position #Vector2(376,224) #TODO flee before player
@@ -85,7 +88,14 @@ func _on_scare(on)-> void:
 func kill()->void:
 	anim.play("run")
 	Mode=Global.MODE.RUN
+	#ignore walls to get through ghostdoor, navigation will still follow corridors
 	set_collision_layer_value(1,false)
 	set_collision_mask_value(1,false)
+	Global.scoreChange(100*Global.Bonus,0)
+	Global.bonus_changed.emit(1)
 	$Timer.stop() 
 	$Timer.start(1)
+
+func revive()->void:
+	reset()
+	self.position=initial_position

@@ -42,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_qa2ur")
 theme_override_font_sizes/font_size = 34
-text = "Get Ready"
+text = "Get Ready and collect enough pills !"
 horizontal_alignment = 1
 vertical_alignment = 1
 

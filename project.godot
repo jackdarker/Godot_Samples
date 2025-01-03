@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://scenes/global_script.gd"
+SaveLoad="*res://scenes/save_load.gd"
 
 [display]
 
@@ -32,6 +33,7 @@ enabled=PackedStringArray("res://addons/YATI/plugin.cfg")
 
 Items=""
 Ghosts=""
+Persist=""
 
 [input]
 

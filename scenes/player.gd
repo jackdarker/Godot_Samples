@@ -8,7 +8,7 @@ var lives = 1 #Pac-man lives counter
 
 const PPill = preload("res://scenes/powerpill.gd")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction_x = Input.get_axis("move_left", "move_right")
 	var direction_y = Input.get_axis("move_up", "move_down")
 	velocity.x=0
@@ -42,18 +42,24 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 		elif(_foe.Mode==Global.MODE.RUN):
 			pass
 		else:
-			character_reset()
+			Global.player_death.emit()
+			#character_reset()
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var faction:int=body.get_meta("faction",0)
 	if(faction!=0):
 		pass #character_reset()
 
-func character_reset() -> void:
+func revive() -> void:
 	position = initial_position
 	# Lives counter
 	lives = lives - 1
-	if lives <= 0:
-		#get_node("/root/Pack-man/Lives/SprLifecounter0").visible = false
-		get_tree().paused = true
-		get_node("/root/Level/game_over_screen").visible = true
+
+func save():
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Vector2 is not supported by JSON
+		"pos_y" : position.y
+	}
+	return save_dict

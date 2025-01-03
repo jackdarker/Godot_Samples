@@ -111,3 +111,7 @@ Label/constants/shadow_outline_size = 1
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_6lp7o")
 Label/styles/normal = SubResource("StyleBoxEmpty_fq5p7")
+MarginContainer/constants/margin_bottom = 30
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 30
+MarginContainer/constants/margin_top = 4
