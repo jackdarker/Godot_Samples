@@ -1,5 +1,6 @@
 extends Node
 
+var highscores:Array[Dictionary] = []
 var score:int
 var pills:int  #pills required
 
@@ -50,8 +51,26 @@ func _ready() -> void:
 	var root = get_tree().root
 	# Using a negative index counts from the end, so this gets the last child node of `root`.
 	current_scene = root.get_child(-1)
+	if(SaveLoad.load_highscore(highscores)<0):
+		highscores=[{"name":"Inky","score":10000 },{"name":"Pinky","score":5000 }]
+		SaveLoad.save_highscore(highscores)
 
 func quitGodot():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	get_tree().quit()
 	
+func updateHighscore():	
+	var index:int=-1
+	var maxEntrys:int=5
+	var entry={"name":"Player","score":Global.score}
+	for i in Global.highscores.size():
+		if(Global.score>Global.highscores[i]["score"]):
+			index=i
+			break
+	if(index>=0):
+		Global.highscores.insert(index,entry)
+		if(Global.highscores.size()>maxEntrys):
+			Global.highscores.resize(maxEntrys)
+		SaveLoad.save_highscore(Global.highscores)
+	elif(Global.highscores.size()<maxEntrys):
+		Global.highscores.append(entry)

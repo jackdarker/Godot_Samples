@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://xk51hvai1u30"]
+[gd_scene load_steps=7 format=3 uid="uid://xk51hvai1u30"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_qjaec"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_2d35r"]
+[ext_resource type="PackedScene" uid="uid://bs0vuv6wkijmy" path="res://scenes/highscore.tscn" id="2_64uog"]
 [ext_resource type="FontFile" uid="uid://ch2qmpdjqls18" path="res://assets/fonts/Xolonium-Regular-dc1d20fa.ttf" id="3_r5jrr"]
 [ext_resource type="AudioStream" uid="uid://cmc1m6r0ti3ls" path="res://assets/audio/Select 1.wav" id="4_0mx0o"]
 
@@ -20,6 +21,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Highscore" parent="CanvasLayer" instance=ExtResource("2_64uog")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
@@ -33,45 +43,19 @@ See your highscore:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -68.0
-offset_right = 50.0
-offset_bottom = 68.0
+[node name="LabelResult" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 232.0
+offset_top = 120.0
+offset_right = -264.0
+offset_bottom = 217.0
 grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 24)
-layout_mode = 2
-text = "no highscore"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 24)
-layout_mode = 2
-text = "no highscore"
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 24)
-layout_mode = 2
-text = "no highscore"
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 24)
-layout_mode = 2
-text = "no highscore"
-
-[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 24)
-layout_mode = 2
-text = "no highscore"
+theme = SubResource("Theme_trl2h")
+theme_override_font_sizes/font_size = 24
+text = "Your result"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 3
@@ -105,6 +89,7 @@ text = "Quit Game"
 [node name="SoundSelect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_0mx0o")
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="focus_entered" from="CanvasLayer/MarginContainer/MenuContainer/btMain" to="." method="_on_bt_focus_entered"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/MenuContainer/btMain" to="." method="_on_bt_main_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/MarginContainer/MenuContainer/btQuit" to="." method="_on_bt_focus_entered"]

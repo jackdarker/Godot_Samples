@@ -1,6 +1,8 @@
+#class_name SaveData 
 extends Node
 
 var save_file_name = "c://temp//save1.txt"#"user://GodotSample.save"
+var highscore_name = "c://temp//score.txt"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -92,3 +94,31 @@ func load_game():
 				continue
 			new_object.set(i, node_data[i])
 	return
+
+func save_highscore(highscores) -> int:
+	var json_string = JSON.stringify(highscores)
+	
+	var file = FileAccess.open(highscore_name, FileAccess.WRITE)
+	if file:
+		file.store_line(json_string) #file.store_64(highscore)
+		return 0
+	else:
+		push_warning("Couldn't save highscore file: ", error_string(FileAccess.get_open_error()))
+		return -1
+
+func load_highscore(highscores) -> int:
+	var json = JSON.new()
+	
+	var file = FileAccess.open(highscore_name, FileAccess.READ)
+	if file:
+		var json_string=file.get_line()
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			return -1
+		# Get the data from the JSON object.
+		highscores.assign(json.data)
+		return 0 #file.get_64()
+	else:
+		push_warning("Couldn't load highscore file: ", error_string(FileAccess.get_open_error()))
+		return -1

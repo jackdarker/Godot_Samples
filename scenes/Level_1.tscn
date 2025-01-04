@@ -818,23 +818,23 @@ position = Vector2(312, 224)
 [node name="GhostRed" parent="Foes" node_paths=PackedStringArray("home", "target") instance=ExtResource("5_vdfls")]
 position = Vector2(344, 264)
 maxSpeed = null
-Type = null
 home = NodePath("../GhostHome")
 target = NodePath("../../Player")
+Type = null
 
 [node name="GhostRed2" parent="Foes" node_paths=PackedStringArray("home", "target") instance=ExtResource("5_vdfls")]
 position = Vector2(408, 264)
 maxSpeed = null
-Type = 1
 home = NodePath("../GhostHome")
 target = NodePath("../../Player")
+Type = 1
 
 [node name="GhostBlue" parent="Foes" node_paths=PackedStringArray("home", "target") instance=ExtResource("5_vdfls")]
 position = Vector2(352, 288)
 maxSpeed = null
-Type = 1
 home = NodePath("../GhostHome")
 target = NodePath("../../Player")
+Type = 1
 
 [node name="Items" type="Node" parent="."]
 
@@ -1626,5 +1626,6 @@ position = Vector2(400, 298)
 
 [node name="TimerBonus" type="Timer" parent="."]
 
+[connection signal="visibility_changed" from="game_over_screen" to="." method="_on_game_over_screen_visibility_changed"]
 [connection signal="body_entered" from="Ly_Gnd/TP_Left" to="." method="_on_TP1_body_entered"]
 [connection signal="body_entered" from="Ly_Gnd/TP_Right" to="." method="_on_TP2_body_entered"]

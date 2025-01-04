@@ -18,3 +18,12 @@ func _on_bt_main_pressed() -> void:
 
 func _on_bt_start_pressed() -> void:
 	Global.goto_scene("res://scenes/Level_1.tscn")
+
+
+func _on_bt_high_score_pressed() -> void:
+	Global.goto_scene("res://scenes/finished_menu.tscn")
+
+
+func _on_ready() -> void:
+	$CanvasLayer/LabelResult.text="Your score:\t"+str(Global.score)
+	pass # Replace with function body.

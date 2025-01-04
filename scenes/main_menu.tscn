@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwnssdchq2fhr"]
+[gd_scene load_steps=7 format=3 uid="uid://bwnssdchq2fhr"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_4rjoh"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_j5826"]
+[ext_resource type="PackedScene" uid="uid://bs0vuv6wkijmy" path="res://scenes/highscore.tscn" id="2_rvckc"]
 [ext_resource type="FontFile" uid="uid://ch2qmpdjqls18" path="res://assets/fonts/Xolonium-Regular-dc1d20fa.ttf" id="3_gx0st"]
 [ext_resource type="AudioStream" uid="uid://cmc1m6r0ti3ls" path="res://assets/audio/Select 1.wav" id="4_ot0x6"]
 
@@ -31,22 +32,29 @@ text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="Highscore" parent="CanvasLayer" instance=ExtResource("2_rvckc")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -35.0
-offset_right = 150.0
-offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -216.0
+offset_right = 184.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [node name="MenuContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="btStart" type="Button" parent="CanvasLayer/MarginContainer/MenuContainer"]
 layout_mode = 2

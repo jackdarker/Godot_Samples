@@ -59,3 +59,9 @@ func save():
 		"pos_y" : position.y
 	}
 	return save_dict
+
+
+func _on_game_over_screen_visibility_changed() -> void:
+	#at end of game check if we have highscore amd save if so
+	if !$game_over_screen.visible: return
+	Global.updateHighscore()
