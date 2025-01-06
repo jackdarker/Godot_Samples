@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://b7haxlf1ebksd" path="res://scenes/game_over_screen.tscn" id="3_0yi2e"]
 [ext_resource type="PackedScene" uid="uid://c2komhji0x4ic" path="res://scenes/ready_counter.tscn" id="3_4vjbi"]
 [ext_resource type="PackedScene" uid="uid://cebipfg1vjhof" path="res://scenes/pause_screen.tscn" id="4_5mtbv"]
-[ext_resource type="PackedScene" uid="uid://bxh5v7u36fjlf" path="res://scenes/ghost.tscn" id="5_vdfls"]
-[ext_resource type="PackedScene" uid="uid://d3eeqxp0nyj4s" path="res://scenes/pill.tscn" id="6_a5xcr"]
+[ext_resource type="PackedScene" uid="uid://bxh5v7u36fjlf" path="res://scenes/items/ghost.tscn" id="5_vdfls"]
+[ext_resource type="PackedScene" uid="uid://d3eeqxp0nyj4s" path="res://scenes/items/pill.tscn" id="6_a5xcr"]
 [ext_resource type="PackedScene" uid="uid://b0aqfcw0pq0s0" path="res://scenes/ghost_door.tscn" id="6_l0crd"]
 [ext_resource type="Texture2D" uid="uid://bbkf15iyec1wh" path="res://assets/sprites/background2.png" id="7_pg7wh"]
-[ext_resource type="PackedScene" uid="uid://bthiqlsn0fnek" path="res://scenes/player.tscn" id="8_4t1d5"]
-[ext_resource type="PackedScene" uid="uid://c5pricjg55ygp" path="res://scenes/powerpill.tscn" id="9_1jibx"]
+[ext_resource type="PackedScene" uid="uid://bthiqlsn0fnek" path="res://scenes/items/player.tscn" id="8_4t1d5"]
+[ext_resource type="PackedScene" uid="uid://c5pricjg55ygp" path="res://scenes/items/powerpill.tscn" id="9_1jibx"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_tc1yg"]
 tile_data = PackedInt32Array(0, 1, 3, 65536, 1, 4, 131072, 1, 2, 1, 327681, 3, 65537, 327681, 3, 131073, 327681, 3)

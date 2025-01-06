@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpdcc00pv3sdr"]
+
+[ext_resource type="Script" path="res://scenes/items/bouncy.gd" id="1_ap4da"]
+
+[node name="Bouncy" type="Node"]
+script = ExtResource("1_ap4da")

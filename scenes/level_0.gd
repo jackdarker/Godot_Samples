@@ -13,11 +13,17 @@ func _ready() -> void:
 	#get_tree().paused = false  handled by ready_counter
 	Global.score=0
 	Global.Bonus=1
-	Global.pills=$Items.get_child_count()-100
-	$TimerBonus.timeout.connect(func(): self.setBonus(-1))
-	Global.bonus_changed.connect(Callable(self , "setBonus"))#.bind(1))
-	Global.score_changed.connect(Callable(self , "checkVictory"))
+	#Global.pills=$Items.get_child_count()-100
+	#$TimerBonus.timeout.connect(func(): self.setBonus(-1))
+	#Global.bonus_changed.connect(Callable(self , "setBonus"))#.bind(1))
+	#Global.score_changed.connect(Callable(self , "checkVictory"))
 	Global.player_death.connect(Callable(self , "player_revive"))
+	var level_data=preload("res://scenes/level_2.tscn").instantiate()
+	for i in $level_data.get_children():
+		$level_data.remove_child(i)
+		i.queue_free()
+	$level_data.add_child(level_data)
+
 	pass
 
 func _input(event):
@@ -25,15 +31,8 @@ func _input(event):
 		if not get_tree().paused:
 			get_node("/root/Level/pause_screen").visible = true
 			get_tree().paused = true
-			
-	if event.is_action_pressed("action_1"):
-		$Ly_Gnd/GhostDoor.process_mode=Node.PROCESS_MODE_DISABLED #this disables the physics but not the sprite
-		
 
 func player_revive()->void:
-	$Foes/GhostRed.revive()
-	$Foes/GhostRed2.revive()
-	$Foes/GhostBlue.revive()
 	$Player.revive()
 	if $Player.lives <= 0:
 		#get_node("/root/Pack-man/Lives/SprLifecounter0").visible = false
@@ -41,6 +40,7 @@ func player_revive()->void:
 		get_node("/root/Level/game_over_screen").visible = true
 
 func checkVictory(_change)->void:
+	return #TODO
 	if(Global.pills<1):
 		get_tree().paused=true
 		Global.goto_scene("res://scenes/finished_menu.tscn")

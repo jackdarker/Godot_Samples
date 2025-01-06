@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceubbuulswyye"]
+
+[ext_resource type="Script" path="res://scenes/items/helmet.gd" id="1_m7hho"]
+[ext_resource type="Texture2D" uid="uid://bo47t2tyohn1c" path="res://assets/sprites/Kenney/PNG/Default/item_helmet.png" id="2_fipv8"]
+[ext_resource type="AudioStream" uid="uid://7bgllyugkrwk" path="res://assets/audio/kenney_rpg-audio/Audio/clothBelt2.ogg" id="3_pnbb3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pesxs"]
+radius = 8.0
+
+[node name="Helmet" type="Area2D" groups=["Items"]]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_m7hho")
+metadata/_edit_group_ = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_fipv8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pesxs")
+
+[node name="SoundPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pnbb3")
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="SoundPickup" to="." method="_on_sound_pickup_finished"]

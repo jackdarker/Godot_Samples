@@ -17,7 +17,7 @@ func _on_bt_main_pressed() -> void:
 	Global.goto_scene("res://Scenes/main_menu.tscn")
 
 func _on_bt_start_pressed() -> void:
-	Global.goto_scene("res://scenes/Level_1.tscn")
+	Global.goto_scene("res://scenes/Level_0.tscn")
 
 
 func _on_bt_high_score_pressed() -> void:

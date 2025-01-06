@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="PacMan"
+config/name="2DTopDownShooter"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://scenes/global_script.gd"
 SaveLoad="*res://scenes/save_load.gd"
+AudioManager="*res://scenes/AudioManager.gd"
 
 [display]
 
@@ -34,6 +35,7 @@ enabled=PackedStringArray("res://addons/YATI/plugin.cfg")
 Items=""
 Ghosts=""
 Persist=""
+Player=""
 
 [input]
 
@@ -76,6 +78,7 @@ pause={
 
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="Items"
+2d_physics/layer_3="Vision"
 
 [rendering]
 

@@ -4,7 +4,7 @@ var highscores:Array[Dictionary] = []
 var score:int
 var pills:int  #pills required
 
-#TODO show highscore
+var level:int=2
 
 signal scare(on:bool)	#fired when powerpill pickedup
 signal score_changed(change) #fired when score is increased
