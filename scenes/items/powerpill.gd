@@ -6,8 +6,9 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func pickup()->void:
+func pickup(body:BaseCharacter)->void:
 	self.visible=false
+	$CollisionShape2D.disabled=true
 	#self.process_mode=Node.PROCESS_MODE_DISABLED
 	Global.scoreChange(50,1)
 	Global.scare.emit(true)

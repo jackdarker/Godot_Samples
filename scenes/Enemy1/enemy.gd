@@ -25,7 +25,7 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	if body.is_in_group("Player"):
 		player_in_range = false
-		fsm.change_state(chase_node, "enemy_idle")
+		fsm.change_state(null, "enemy_idle")
 		
 func _die():
 	super() #calls _die() on base-class CharacterBase

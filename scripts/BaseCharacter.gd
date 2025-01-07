@@ -1,6 +1,6 @@
 class_name BaseCharacter extends CharacterBody2D
 
-#@export var sprite : AnimatedSprite2D
+@export var sprite : Node2D
 @export var healthbar : ProgressBar
 @export var health : int
 @export var flipped_horizontal : bool
@@ -11,8 +11,8 @@ var is_dead : bool = false
 func _ready():
 	init_character()
 	
-#func _process(_delta):
-#	Turn()
+func _process(_delta):
+	Turn()
 	
 #Add anything here that needs to be initialized on the character
 func init_character():
@@ -23,11 +23,10 @@ func init_character():
 func Turn():
 	#This ternary lets us flip a sprite if its drawn the wrong way
 	var direction = -1 if flipped_horizontal == true else 1
-	
-	#if(velocity.x < 0):
-	#	sprite.scale.x = -direction
-	#elif(velocity.x > 0):
-	#	sprite.scale.x = direction
+	if(velocity.x < 0):
+		sprite.scale.x = -direction
+	elif(velocity.x > 0):
+		sprite.scale.x = direction
 
 #region Taking Damage
 

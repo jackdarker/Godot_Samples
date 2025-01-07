@@ -2,11 +2,13 @@ extends Node
 
 #This class preloads all of our sound effects so that they can be played at a momets notice
 #region Preloaded Sounds
-#const PLAYER_ATTACK_HIT = preload("res://Art/Audio/Effects/AttackHit.ogg")
-#const PLAYER_ATTACK_SWING = preload("res://Art/Audio/Effects/AttackSwing.ogg")
+const PLAYER_ATTACK_HIT = preload("res://assets/audio/kenney_rpg-audio/Audio/footstep04.ogg")
+const PLAYER_ATTACK_SWING = preload("res://assets/audio/kenney_rpg-audio/Audio/footstep03.ogg")
 #const ENEMY_HIT = preload("res://Art/Audio/Effects/Enemy_hit.ogg")
 const BLOODY_HIT = preload("res://assets/audio/kenney_impact-sounds/Audio/impactPunch_heavy_003.ogg")
 const COIN_PICK = preload("res://assets/audio/Select 1.wav")
+const ARMOR_PICK = preload("res://assets/audio/kenney_rpg-audio/Audio/clothBelt2.ogg")
+const NO_PICK = preload("res://assets/audio/kenney_impact-sounds/Audio/footstep_concrete_002.ogg")
 #const QUEST_SOUND = preload("res://Art/Audio/Effects/QuestSound.ogg")
 #endregion
 

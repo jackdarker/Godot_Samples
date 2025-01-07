@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d3eeqxp0nyj4s" path="res://scenes/items/pill.tscn" id="6_a5xcr"]
 [ext_resource type="PackedScene" uid="uid://b0aqfcw0pq0s0" path="res://scenes/ghost_door.tscn" id="6_l0crd"]
 [ext_resource type="Texture2D" uid="uid://bbkf15iyec1wh" path="res://assets/sprites/background2.png" id="7_pg7wh"]
-[ext_resource type="PackedScene" uid="uid://bthiqlsn0fnek" path="res://scenes/items/player.tscn" id="8_4t1d5"]
+[ext_resource type="PackedScene" uid="uid://bthiqlsn0fnek" path="res://scenes/Player/player.tscn" id="8_4t1d5"]
 [ext_resource type="PackedScene" uid="uid://c5pricjg55ygp" path="res://scenes/items/powerpill.tscn" id="9_1jibx"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_tc1yg"]

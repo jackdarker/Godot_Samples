@@ -12,18 +12,22 @@ const States = {
 
 @onready var anim = $AnimationTree
 @onready var initial_position = position
-@onready var sprite:Node2D = $Sprite
+#@onready var sprite:Node2D = $Sprite
 @onready var sprite_scale:float= sprite.scale.x
 
-const SPEED = 100.0
+const SPEED = 60.0
 var lives = 1 #Pac-man lives counter
 
 const PPill = preload("res://scenes/items/powerpill.gd")
 
 func _ready() -> void:
-	$AnimationTree.active = true
+	#$AnimationTree.active = true
+	unequip("Head")
+	unequip("Weapon")
+	pass
 	
-func _physics_process(_delta: float) -> void:
+func old_physics_process(_delta: float) -> void:
+	#
 	var direction_x = Input.get_axis("move_left", "move_right")
 	var direction_y = Input.get_axis("move_up", "move_down")
 	velocity.x=0
@@ -54,28 +58,37 @@ func _physics_process(_delta: float) -> void:
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	#print("hit3")
 	if area.is_in_group("Items"):
-		if(area is PPill):
-			pass #$SoundPowerup.play()
-		area.pickup()
-	elif area.is_in_group("Ghosts"):
-		var _foe=area.get_parent()
-		if(_foe.Mode==Global.MODE.FRIGHTENED):
-			_foe.kill()
-		elif(_foe.Mode==Global.MODE.RUN):
-			pass
-		else:
-			Global.player_death.emit()
-			#character_reset()
+		area.pickup(self)
 	
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	var faction:int=body.get_meta("faction",0)
-	if(faction!=0):
-		pass #character_reset()
-
 func revive() -> void:
 	position = initial_position
 	# Lives counter
 	lives = lives - 1
+
+func unequip(slot:String)->void:
+	var items=$Sprite/Skeleton2D.find_children(slot+"*")
+	for i in items:
+		i.visible=false
+	if(slot=="Weapon"):
+		$Sprite/hurtbox/middleshape.disabled=true
+		$Sprite/hurtbox/farshape.disabled=true
+
+func equip(slot:String,equipname:String)->bool:
+	var item=$Sprite/Skeleton2D.find_child(slot+"_"+equipname)
+	if(item && !item.visible):
+		unequip(slot)
+		item.visible=true
+		match equipname:
+			"Sword1":
+				$FSM/attacking.attacks[0]=$FSM/attacking/punch
+				#$Sprite/hurtbox/middleshape.disabled=false
+			"Spear1":
+				$FSM/attacking.attacks[0]=$FSM/attacking/strike_long
+				#$Sprite/hurtbox/farshape.disabled=false
+		AudioManager.play_sound(AudioManager.ARMOR_PICK,0,1)
+		return(true)
+	else:
+		return(false)
 
 func save():
 	var save_dict = {

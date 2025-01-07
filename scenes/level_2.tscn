@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://wxosb6xn20j7"]
+[gd_scene load_steps=10 format=4 uid="uid://wxosb6xn20j7"]
 
 [ext_resource type="Texture2D" uid="uid://bs8kcgbqe28ge" path="res://assets/sprites/Kenney/Tilesheet/spritesheet_default.png" id="1_1qx3y"]
 [ext_resource type="Texture2D" uid="uid://bgobtddb7ml1n" path="res://assets/sprites/Kenney/Tilesheet/tilesheet.png" id="1_ak2q5"]
 [ext_resource type="PackedScene" uid="uid://c5pricjg55ygp" path="res://scenes/items/powerpill.tscn" id="2_sd86y"]
 [ext_resource type="PackedScene" uid="uid://ig8wbeolt2ke" path="res://scenes/items/AreaExit.tscn" id="3_aix7f"]
 [ext_resource type="PackedScene" uid="uid://bt6th05osre1t" path="res://scenes/Enemy1/enemy.tscn" id="5_6poco"]
+[ext_resource type="PackedScene" uid="uid://ceubbuulswyye" path="res://scenes/items/helmet.tscn" id="5_aro0a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4r6f"]
 texture = ExtResource("1_1qx3y")
@@ -298,7 +299,23 @@ position = Vector2(952, 360)
 [node name="Pickups" type="Node" parent="."]
 
 [node name="PowerPill" parent="Pickups" instance=ExtResource("2_sd86y")]
-position = Vector2(328, 212)
+position = Vector2(592, 600)
+
+[node name="Helmet" parent="Pickups" instance=ExtResource("5_aro0a")]
+position = Vector2(392, 152)
+
+[node name="Helmet2" parent="Pickups" instance=ExtResource("5_aro0a")]
+position = Vector2(184, 240)
+
+[node name="Sword" parent="Pickups" instance=ExtResource("5_aro0a")]
+position = Vector2(744, 208)
+equipslot = "Weapon"
+equipname = "Sword1"
+
+[node name="Spear" parent="Pickups" instance=ExtResource("5_aro0a")]
+position = Vector2(272, 152)
+equipslot = "Weapon"
+equipname = "Spear1"
 
 [node name="Foe" parent="." instance=ExtResource("5_6poco")]
 position = Vector2(304, 392)
