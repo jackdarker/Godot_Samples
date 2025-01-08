@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bt6th05osre1t"]
+[gd_scene load_steps=17 format=3 uid="uid://bt6th05osre1t"]
 
 [ext_resource type="Script" path="res://scenes/Enemy1/enemy.gd" id="1_l70d0"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_2jipy"]
@@ -208,9 +208,6 @@ _data = {
 "walk": SubResource("Animation_d2j5l")
 }
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6l8s6"]
-polygon = PackedVector2Array(2.66667, 6.66666, 52, 6.66666, 25.3333, 17.3333)
-
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar") groups=["Enemys", "Persist"]]
 scale = Vector2(0.75, 0.75)
 collision_layer = 3
@@ -220,6 +217,7 @@ sprite = NodePath("Sprite")
 healthbar = NodePath("healthbar")
 health = 5
 metadata/Faction = 1
+metadata/_edit_group_ = true
 
 [node name="WorldCollide" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rn4eb")
@@ -292,11 +290,6 @@ texture = ExtResource("5_onbfo")
 metadata/_edit_lock_ = true
 
 [node name="HitParticles" parent="." instance=ExtResource("8_6u1lg")]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
-position = Vector2(-25.3333, 26.6667)
-occluder = SubResource("OccluderPolygon2D_6l8s6")
 
 [node name="healthbar" type="ProgressBar" parent="."]
 anchors_preset = 5

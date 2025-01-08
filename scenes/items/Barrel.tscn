@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://derj53iq5m4d7"]
+
+[ext_resource type="Script" path="res://scenes/items/barrel.gd" id="1_twrqa"]
+[ext_resource type="Texture2D" uid="uid://c4hm85snpbstp" path="res://assets/sprites/Kenney/PNG/Default (64px)/trapdoor_round.png" id="2_qdvpd"]
+[ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="3_okro5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pesxs"]
+radius = 29.0172
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xafu"]
+radius = 104.0
+
+[node name="Barrel" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar") groups=["Enemys"]]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_twrqa")
+sprite = NodePath("Sprite/Barrel1")
+healthbar = NodePath("healthbar")
+health = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pesxs")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Barrel1" type="Sprite2D" parent="Sprite"]
+scale = Vector2(1.37132, 1.37132)
+texture = ExtResource("2_qdvpd")
+
+[node name="healthbar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.0
+offset_top = -49.0
+offset_right = 39.0
+offset_bottom = -40.0
+grow_horizontal = 2
+theme = ExtResource("3_okro5")
+value = 50.0
+show_percentage = false
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_4xafu")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

@@ -16,6 +16,7 @@ func _process(_delta):
 	
 #Add anything here that needs to be initialized on the character
 func init_character():
+	healthbar.visible=false
 	healthbar.max_value = health
 	healthbar.value = health
 
@@ -51,7 +52,7 @@ func after_damage_iframes():
 func _take_damage(amount):
 	if(invincible == true || is_dead == true):
 		return
-		
+	healthbar.visible=true
 	health -= amount
 	healthbar.value = health;
 	damage_effects()
@@ -70,3 +71,36 @@ func _die():
 		queue_free()
 
 #endregion
+
+func unequip(slot:String)->void:
+	var items=$Sprite/Skeleton2D.find_children(slot+"*")
+	for i in items:
+		i.visible=false
+	if(slot=="Weapon"):
+		$Sprite/hurtbox/middleshape.set_deferred("disabled",true) # causes cant change state while flushing queries otherwise
+		$Sprite/hurtbox/farshape.set_deferred("disabled",true)
+
+func equip(slot:String,equipname:String)->bool:
+	var item=$Sprite/Skeleton2D.find_child(slot+"_"+equipname)
+	if(item && !item.visible):
+		unequip(slot)
+		item.visible=true
+		match equipname:
+			"Sword1":
+				$FSM/attacking.attacks[0]=$FSM/attacking/punch
+				#$Sprite/hurtbox/middleshape.disabled=false
+			"Spear1":
+				$FSM/attacking.attacks[0]=$FSM/attacking/strike_long
+				#$Sprite/hurtbox/farshape.disabled=false
+		AudioManager.play_sound(AudioManager.ARMOR_PICK,0,1)
+		return(true)
+	else:
+		return(false)
+
+# when player presses activate_1 close to this node something might happen
+# toogle switch, open chest,
+# use zipline 
+# start carrying this item
+# taking this item (and equipping it)
+func useMe()->void:
+	pass

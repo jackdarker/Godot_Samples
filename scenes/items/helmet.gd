@@ -1,7 +1,7 @@
 extends Area2D
 @export var equipslot:String = "Head" #category "Armor"
 @export var equipname:String = "Helmet1" #node with name "Helmet1"
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	var items=$Sprite.get_children();
 	for i in items:

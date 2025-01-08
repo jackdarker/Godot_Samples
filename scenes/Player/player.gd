@@ -22,6 +22,7 @@ const PPill = preload("res://scenes/items/powerpill.gd")
 
 func _ready() -> void:
 	#$AnimationTree.active = true
+	super()
 	unequip("Head")
 	unequip("Weapon")
 	pass
@@ -65,30 +66,6 @@ func revive() -> void:
 	# Lives counter
 	lives = lives - 1
 
-func unequip(slot:String)->void:
-	var items=$Sprite/Skeleton2D.find_children(slot+"*")
-	for i in items:
-		i.visible=false
-	if(slot=="Weapon"):
-		$Sprite/hurtbox/middleshape.disabled=true
-		$Sprite/hurtbox/farshape.disabled=true
-
-func equip(slot:String,equipname:String)->bool:
-	var item=$Sprite/Skeleton2D.find_child(slot+"_"+equipname)
-	if(item && !item.visible):
-		unequip(slot)
-		item.visible=true
-		match equipname:
-			"Sword1":
-				$FSM/attacking.attacks[0]=$FSM/attacking/punch
-				#$Sprite/hurtbox/middleshape.disabled=false
-			"Spear1":
-				$FSM/attacking.attacks[0]=$FSM/attacking/strike_long
-				#$Sprite/hurtbox/farshape.disabled=false
-		AudioManager.play_sound(AudioManager.ARMOR_PICK,0,1)
-		return(true)
-	else:
-		return(false)
 
 func save():
 	var save_dict = {

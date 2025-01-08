@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dyoqwqakkfsn2"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dyoqwqakkfsn2"]
 
 [ext_resource type="FontFile" uid="uid://ch2qmpdjqls18" path="res://assets/fonts/Xolonium-Regular-dc1d20fa.ttf" id="1_6lp7o"]
 
@@ -71,8 +71,6 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fq5p7"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2xc4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xptlv"]
@@ -115,7 +113,6 @@ Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 1
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_6lp7o")
-Label/styles/normal = SubResource("StyleBoxEmpty_fq5p7")
 MarginContainer/constants/margin_bottom = 30
 MarginContainer/constants/margin_left = 4
 MarginContainer/constants/margin_right = 30

@@ -4,7 +4,7 @@ extends Node
 
 var time_passed = 0
 
-@onready var _owner:Node2D=get_parent()
+@onready var _owner:CanvasItem=get_parent() as CanvasItem
 @onready var initial_position=_owner.position
 @export var amplitude := 3.0
 @export var frequency := 4.0

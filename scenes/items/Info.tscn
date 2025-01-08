@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://bt4rrrqresp30"]
+
+[ext_resource type="Script" path="res://scenes/items/info.gd" id="1_yo2ql"]
+[ext_resource type="PackedScene" uid="uid://dpdcc00pv3sdr" path="res://scenes/items/Bouncy.tscn" id="2_jw0ji"]
+[ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="3_4sxog"]
+[ext_resource type="FontFile" uid="uid://ch2qmpdjqls18" path="res://assets/fonts/Xolonium-Regular-dc1d20fa.ttf" id="4_xbc7b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pesxs"]
+radius = 16.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_v47yy"]
+font = ExtResource("4_xbc7b")
+font_size = 32
+font_color = Color(1, 1, 0.207843, 1)
+outline_size = 8
+outline_color = Color(0.151276, 0.151276, 0.151276, 1)
+shadow_size = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyhak"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b0th7"]
+font = ExtResource("4_xbc7b")
+font_color = Color(0.118581, 0.118581, 0.118581, 1)
+
+[node name="Info" type="Area2D"]
+collision_layer = 3
+script = ExtResource("1_yo2ql")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pesxs")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Mark" type="Label" parent="Sprite"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -11.0
+offset_right = 14.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_4sxog")
+text = "!"
+label_settings = SubResource("LabelSettings_v47yy")
+horizontal_alignment = 1
+
+[node name="Bouncy" parent="Sprite/Mark" instance=ExtResource("2_jw0ji")]
+
+[node name="Info" type="Label" parent="Sprite"]
+visible = false
+z_index = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.0
+offset_top = -56.0
+offset_right = 78.0
+offset_bottom = -36.0
+grow_horizontal = 2
+theme = ExtResource("3_4sxog")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eyhak")
+text = "This is a long text"
+label_settings = SubResource("LabelSettings_b0th7")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
