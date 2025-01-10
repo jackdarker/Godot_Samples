@@ -32,5 +32,3 @@ func Enter():
 	await animator.animation_finished
 	state_transition.emit(self, "idle")
 	
-func Update(_delta : float):
-	pass

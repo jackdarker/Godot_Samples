@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpm4jyojw7l6x"]
+
+[ext_resource type="Script" path="res://scenes/items/switch.gd" id="1_x53s2"]
+[ext_resource type="Texture2D" uid="uid://3m6elju82ti" path="res://assets/sprites/Kenney/PNG/Default/ui_box.png" id="2_gnjaa"]
+[ext_resource type="Texture2D" uid="uid://dt1bvyq1j7i5k" path="res://assets/sprites/Kenney/PNG/Default/effect_blast.png" id="3_cswqt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3nur"]
+radius = 29.0172
+
+[node name="Switch" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_x53s2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k3nur")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="State0" type="Sprite2D" parent="Sprite"]
+scale = Vector2(0.700866, 0.715672)
+texture = ExtResource("2_gnjaa")
+
+[node name="State1" type="Sprite2D" parent="Sprite"]
+visible = false
+texture = ExtResource("3_cswqt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

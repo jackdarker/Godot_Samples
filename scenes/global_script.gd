@@ -10,6 +10,7 @@ signal scare(on:bool)	#fired when powerpill pickedup
 signal score_changed(change) #fired when score is increased
 signal bonus_changed(change) #fired when bonus multiplier increased
 signal player_death() 
+signal interact_touched(body:Node2D, touched:bool, Message:String) #emitted by interactable to character
 
 func scoreChange(change,pill):
 	score+=change

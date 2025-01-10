@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bthiqlsn0fnek"]
+[gd_scene load_steps=29 format=3 uid="uid://bthiqlsn0fnek"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_mkfal"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_04ni3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dlnk55ayxqp3h" path="res://assets/sprites/Kenney/PNG/Default/character_handPurple.png" id="4_huibi"]
 [ext_resource type="Script" path="res://scenes/Player/player_attacking.gd" id="5_qiin8"]
 [ext_resource type="Script" path="res://scripts/attack_data.gd" id="6_qqshj"]
+[ext_resource type="Script" path="res://scenes/Player/player_interact.gd" id="7_tgejj"]
 [ext_resource type="Texture2D" uid="uid://bo47t2tyohn1c" path="res://assets/sprites/Kenney/PNG/Default/item_helmet.png" id="8_lvvfe"]
 [ext_resource type="Texture2D" uid="uid://crk4d286l6kkc" path="res://assets/sprites/Kenney/PNG/Default/item_sword.png" id="10_gm82b"]
 [ext_resource type="Texture2D" uid="uid://di8tky8jvxk2f" path="res://assets/sprites/Kenney/PNG/Default/item_spear.png" id="11_5ageb"]
@@ -380,6 +381,9 @@ script = ExtResource("6_qqshj")
 anim = "strike_long"
 damage = 2
 
+[node name="interact" type="Node" parent="FSM"]
+script = ExtResource("7_tgejj")
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -498,6 +502,23 @@ show_percentage = false
 visible = false
 position = Vector2(-25.3333, 26.6667)
 occluder = SubResource("OccluderPolygon2D_6l8s6")
+
+[node name="UseIndicatore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.6667
+offset_top = -48.0
+offset_right = 21.3333
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_04ni3")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "E: Kick barrel"
+horizontal_alignment = 1
 
 [connection signal="area_shape_entered" from="Sprite/hitbox" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Sprite/hitbox" to="." method="_on_area_2d_body_entered"]

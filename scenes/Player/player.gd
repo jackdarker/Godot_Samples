@@ -14,15 +14,16 @@ const States = {
 @onready var initial_position = position
 #@onready var sprite:Node2D = $Sprite
 @onready var sprite_scale:float= sprite.scale.x
+var interactable:Node2D
 
 const SPEED = 60.0
-var lives = 1 #Pac-man lives counter
-
-const PPill = preload("res://scenes/items/powerpill.gd")
+var lives = 1 # lives counter
 
 func _ready() -> void:
 	#$AnimationTree.active = true
 	super()
+	$UseIndicatore.visible=false
+	Global.interact_touched.connect(Callable(self , "interact_touched"))
 	unequip("Head")
 	unequip("Weapon")
 	pass
@@ -66,6 +67,11 @@ func revive() -> void:
 	# Lives counter
 	lives = lives - 1
 
+func interact_touched(body:Node2D,touched:bool, Message:String)->void:
+	$UseIndicatore.text=Message
+	$UseIndicatore.visible=touched
+	$FSM/interact.setInteractable(body if touched else null)
+	pass
 
 func save():
 	var save_dict = {

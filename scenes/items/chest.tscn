@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1mms0rppi7pw"]
+
+[ext_resource type="Texture2D" uid="uid://cthq4rlrg2i5q" path="res://assets/sprites/Kenney/PNG/Default/tile_chest.png" id="1_hehud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xpkd"]
+size = Vector2(48, 40)
+
+[node name="Chest" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_8xpkd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.43051e-06, 4)
+scale = Vector2(0.75, 0.625)
+texture = ExtResource("1_hehud")

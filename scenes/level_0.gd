@@ -10,7 +10,7 @@ func setBonus(bonus)->void:
 		Global.Bonus=1
 		
 func _ready() -> void:
-	#get_tree().paused = false  handled by ready_counter
+	get_tree().paused = false  #TODO handled by ready_counter
 	Global.score=0
 	Global.Bonus=1
 	#Global.pills=$Items.get_child_count()-100
