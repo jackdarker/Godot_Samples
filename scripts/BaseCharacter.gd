@@ -73,7 +73,7 @@ func _die():
 #endregion
 
 func unequip(slot:String)->void:
-	var items=$Sprite/Skeleton2D.find_children(slot+"*")
+	var items=$Sprite.find_children(slot+"*")
 	for i in items:
 		i.visible=false
 	if(slot=="Weapon"):
@@ -81,7 +81,7 @@ func unequip(slot:String)->void:
 		$Sprite/hurtbox/farshape.set_deferred("disabled",true)
 
 func equip(slot:String,equipname:String)->bool:
-	var item=$Sprite/Skeleton2D.find_child(slot+"_"+equipname)
+	var item=$Sprite.find_child(slot+"_"+equipname)
 	if(item && !item.visible):
 		unequip(slot)
 		item.visible=true

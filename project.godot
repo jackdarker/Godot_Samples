@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2DTopDownShooter"
+config/name="2DShooterScroller"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://scenes/global_script.gd"
 SaveLoad="*res://scenes/save_load.gd"
 AudioManager="*res://scenes/AudioManager.gd"
+BackgroundLoader="*res://scripts/ZoneLoader/background_loader.gd"
 
 [display]
 
@@ -94,6 +95,7 @@ attack_2={
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="Items"
 2d_physics/layer_3="Vision"
+2d_physics/layer_16="zone_triggers"
 
 [rendering]
 

@@ -18,11 +18,11 @@ func _ready() -> void:
 	#Global.bonus_changed.connect(Callable(self , "setBonus"))#.bind(1))
 	#Global.score_changed.connect(Callable(self , "checkVictory"))
 	Global.player_death.connect(Callable(self , "player_revive"))
-	var level_data=preload("res://scenes/level_2.tscn").instantiate()
-	for i in $level_data.get_children():
-		$level_data.remove_child(i)
-		i.queue_free()
-	$level_data.add_child(level_data)
+	#var level_data=preload("res://scenes/level_3.tscn").instantiate()
+	#for i in $level_data.get_children():
+	#	$level_data.remove_child(i)
+	#	i.queue_free()
+	#$level_data.add_child(level_data)
 
 	pass
 

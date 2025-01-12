@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjk734egac8pp"]
+
+[ext_resource type="Texture2D" uid="uid://cb7o6e0qmllqc" path="res://assets/sprites/kenney_space/PNG/Lasers/laserBlue01.png" id="1_eq5qi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ybad6"]
+radius = 8.0
+
+[node name="shot_laser" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ybad6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1.31193, 0.71145)
+texture = ExtResource("1_eq5qi")

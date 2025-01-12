@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx5cy0vrf6mcn"]
+
+[ext_resource type="Script" path="res://scripts/ZoneLoader/world.gd" id="1_fggek"]
+[ext_resource type="PackedScene" uid="uid://bthiqlsn0fnek" path="res://scenes/Player/player.tscn" id="2_7ppbh"]
+[ext_resource type="Script" path="res://scripts/ZoneLoader/zone_loader.gd" id="3_5pgib"]
+[ext_resource type="Script" path="res://scripts/ZoneLoader/zone.gd" id="4_wjuti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78mgd"]
+size = Vector2(978, 666)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_em172"]
+size = Vector2(960, 632)
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_fggek")
+player_scene = ExtResource("2_7ppbh")
+starting_zone = "level_3_0"
+
+[node name="ZoneLoader" type="Node2D" parent="."]
+script = ExtResource("3_5pgib")
+
+[node name="level_3_0" type="Node2D" parent="ZoneLoader"]
+script = ExtResource("4_wjuti")
+zone_path = "res://scenes/level_3_0.tscn"
+
+[node name="LoadTrigger" type="Area2D" parent="ZoneLoader/level_3_0"]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneLoader/level_3_0/LoadTrigger"]
+position = Vector2(479, 323)
+shape = SubResource("RectangleShape2D_78mgd")
+
+[node name="level_3_1" type="Node2D" parent="ZoneLoader"]
+position = Vector2(960, 0)
+script = ExtResource("4_wjuti")
+zone_path = "res://scenes/level_3_1.tscn"
+
+[node name="LoadTrigger" type="Area2D" parent="ZoneLoader/level_3_1"]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneLoader/level_3_1/LoadTrigger"]
+position = Vector2(480, 316)
+shape = SubResource("RectangleShape2D_em172")
