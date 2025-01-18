@@ -27,7 +27,10 @@ func _ready() -> void:
 	unequip("Head")
 	unequip("Weapon")
 	pass
-	
+
+#override: dont flip	
+func Turn()->void:
+	pass	
 func old_physics_process(_delta: float) -> void:
 	#
 	var direction_x = Input.get_axis("move_left", "move_right")

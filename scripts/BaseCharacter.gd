@@ -21,7 +21,7 @@ func init_character():
 	healthbar.value = health
 
 #Flip charater sprites based on their current velocity
-func Turn():
+func Turn()->void:
 	#This ternary lets us flip a sprite if its drawn the wrong way
 	var direction = -1 if flipped_horizontal == true else 1
 	if(velocity.x < 0):

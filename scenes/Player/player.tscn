@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bthiqlsn0fnek"]
+[gd_scene load_steps=35 format=3 uid="uid://bthiqlsn0fnek"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_mkfal"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_04ni3"]
@@ -8,14 +8,15 @@
 [ext_resource type="Script" path="res://scenes/Player/player_attacking.gd" id="5_qiin8"]
 [ext_resource type="Script" path="res://scripts/attack_data.gd" id="6_qqshj"]
 [ext_resource type="Script" path="res://scenes/Player/player_interact.gd" id="7_tgejj"]
+[ext_resource type="Texture2D" uid="uid://cl4vbkhmcbyhx" path="res://assets/sprites/kenney_space/PNG/Effects/fire06.png" id="8_26gty"]
 [ext_resource type="Texture2D" uid="uid://ywfc5an3v2um" path="res://assets/sprites/kenney_space/PNG/playerShip1_blue.png" id="8_j8r8e"]
-[ext_resource type="Texture2D" uid="uid://b0ebfp0a4binu" path="res://assets/sprites/kenney_space-shooter-redux/PNG/Effects/fire03.png" id="8_t5vwi"]
-[ext_resource type="Script" path="res://scenes/Player/player_shooting.gd" id="8_tay0e"]
-[ext_resource type="Texture2D" uid="uid://b5ba7c3mcvkxk" path="res://assets/sprites/kenney_space-shooter-redux/PNG/Effects/fire06.png" id="9_80ra4"]
+[ext_resource type="Texture2D" uid="uid://dibooaoq8t1wr" path="res://assets/sprites/kenney_space/PNG/Effects/fire07.png" id="9_te1ua"]
 [ext_resource type="Texture2D" uid="uid://iaj4byle35v3" path="res://assets/sprites/kenney_space/PNG/Effects/shield3.png" id="9_wsxft"]
 [ext_resource type="Texture2D" uid="uid://d3a6jkqp4aneb" path="res://assets/sprites/kenney_space/PNG/Effects/shield2.png" id="10_a40ro"]
-[ext_resource type="Texture2D" uid="uid://r8ipfuofsjtu" path="res://assets/sprites/kenney_space-shooter-redux/PNG/Effects/fire07.png" id="10_or7bo"]
+[ext_resource type="Texture2D" uid="uid://dovb15x8jvxbb" path="res://assets/sprites/kenney_space/PNG/Effects/fire03.png" id="10_lylug"]
 [ext_resource type="Texture2D" uid="uid://c65j2khb4pf17" path="res://assets/sprites/kenney_space/PNG/Effects/shield1.png" id="11_q66wt"]
+[ext_resource type="PackedScene" uid="uid://db14ruj48scp7" path="res://scenes/gun.tscn" id="15_edoxe"]
+[ext_resource type="PackedScene" uid="uid://cjk734egac8pp" path="res://scenes/sfx/shot_laser.tscn" id="16_1qelk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rn4eb"]
 radius = 30.6667
@@ -177,16 +178,16 @@ node_connections = [&"output", 0, &"state", &"state", 0, &"Animation 2", &"state
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_t5vwi")
+"texture": ExtResource("8_26gty")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_80ra4")
+"texture": ExtResource("9_te1ua")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_or7bo")
+"texture": ExtResource("8_26gty")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_80ra4")
+"texture": ExtResource("10_lylug")
 }],
 "loop": true,
 "name": &"default",
@@ -217,7 +218,7 @@ radius = 10.6667
 size = Vector2(1066.67, 800)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar") groups=["Persist", "Player"]]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.75, 0.75)
 motion_mode = 1
 script = ExtResource("1_mkfal")
 sprite = NodePath("Sprite")
@@ -256,9 +257,6 @@ damage = 2
 
 [node name="interact" type="Node" parent="FSM"]
 script = ExtResource("7_tgejj")
-
-[node name="laser" type="Node" parent="FSM"]
-script = ExtResource("8_tay0e")
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -332,8 +330,12 @@ debug_color = Color(0.550774, 0.464805, 0.832427, 0.42)
 [node name="GunMarker" type="Marker2D" parent="Sprite"]
 position = Vector2(38.6667, 0)
 
+[node name="Laser1" parent="Sprite" node_paths=PackedStringArray("SpawnPoint") instance=ExtResource("15_edoxe")]
+Projectile = ExtResource("16_1qelk")
+SpawnPoint = NodePath("../GunMarker")
+SpawnGroup = "Player"
+
 [node name="healthbar" type="ProgressBar" parent="."]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -347,7 +349,6 @@ value = 50.0
 show_percentage = false
 
 [node name="UseIndicatore" type="Label" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -367,8 +368,6 @@ horizontal_alignment = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
-limit_right = 5000
-limit_bottom = 5000
 
 [node name="Area2D" type="Area2D" parent="Camera2D"]
 collision_layer = 32768

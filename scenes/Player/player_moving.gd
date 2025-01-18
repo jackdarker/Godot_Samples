@@ -21,8 +21,8 @@ func Update(delta : float):
 	if(Input.is_action_just_pressed("action_2") && can_dash):
 		start_dash(input_dir)
 		
-	if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
-		Transition("attacking")
+	#if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
+	#	Transition("attacking")
 	
 func Move(input_dir : Vector2):
 	#Suddenly turning mid dash

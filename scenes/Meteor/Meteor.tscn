@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6wb1sbspc7lj"]
+
+[ext_resource type="Texture2D" uid="uid://d1o8q1r8ctqvi" path="res://assets/sprites/kenney_space/PNG/Meteors/meteorBrown_med1.png" id="1_ahu0v"]
+[ext_resource type="Script" path="res://scripts/BaseCharacter.gd" id="1_y33wm"]
+[ext_resource type="PackedScene" uid="uid://cpqvyagdf63om" path="res://scenes/sfx/hit_particles.tscn" id="3_d5ynm"]
+[ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="4_ni0ad"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ulw4v"]
+radius = 24.0
+
+[node name="Meteor" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") groups=["Enemys"]]
+motion_mode = 1
+script = ExtResource("1_y33wm")
+sprite = NodePath("Sprite2D")
+healthbar = NodePath("healthbar")
+health = 3
+hit_particles = NodePath("HitParticles")
+
+[node name="WorldCollide" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ulw4v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ahu0v")
+
+[node name="HitParticles" parent="." instance=ExtResource("3_d5ynm")]
+
+[node name="healthbar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.0
+offset_top = -58.0
+offset_right = 39.0
+offset_bottom = -49.0
+grow_horizontal = 2
+theme = ExtResource("4_ni0ad")
+value = 50.0
+show_percentage = false

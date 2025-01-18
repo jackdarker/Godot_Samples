@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx5cy0vrf6mcn"]
+[gd_scene load_steps=9 format=3 uid="uid://dx5cy0vrf6mcn"]
 
 [ext_resource type="Script" path="res://scripts/ZoneLoader/world.gd" id="1_fggek"]
 [ext_resource type="PackedScene" uid="uid://bthiqlsn0fnek" path="res://scenes/Player/player.tscn" id="2_7ppbh"]
@@ -6,10 +6,20 @@
 [ext_resource type="Script" path="res://scripts/ZoneLoader/zone.gd" id="4_wjuti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78mgd"]
-size = Vector2(978, 666)
+size = Vector2(1280, 810)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_em172"]
 size = Vector2(960, 632)
+
+[sub_resource type="Gradient" id="Gradient_nmjjn"]
+offsets = PackedFloat32Array(0.582803, 1)
+colors = PackedColorArray(0.141176, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lgbwq"]
+gradient = SubResource("Gradient_nmjjn")
+fill = 1
+fill_from = Vector2(0.478632, 0.457265)
+fill_to = Vector2(0.700855, 0.380342)
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_fggek")
@@ -28,11 +38,11 @@ collision_layer = 32768
 collision_mask = 32768
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneLoader/level_3_0/LoadTrigger"]
-position = Vector2(479, 323)
+position = Vector2(640, 395)
 shape = SubResource("RectangleShape2D_78mgd")
 
 [node name="level_3_1" type="Node2D" parent="ZoneLoader"]
-position = Vector2(960, 0)
+position = Vector2(1272, 0)
 script = ExtResource("4_wjuti")
 zone_path = "res://scenes/level_3_1.tscn"
 
@@ -41,5 +51,40 @@ collision_layer = 32768
 collision_mask = 32768
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneLoader/level_3_1/LoadTrigger"]
-position = Vector2(480, 316)
+position = Vector2(488, 320)
 shape = SubResource("RectangleShape2D_em172")
+
+[node name="level_3_2" type="Node2D" parent="ZoneLoader"]
+position = Vector2(2232, 0)
+script = ExtResource("4_wjuti")
+zone_path = "res://scenes/level_3_2.tscn"
+
+[node name="LoadTrigger" type="Area2D" parent="ZoneLoader/level_3_2"]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneLoader/level_3_2/LoadTrigger"]
+position = Vector2(640, 400)
+shape = SubResource("RectangleShape2D_78mgd")
+
+[node name="level_3_Exit" type="Node2D" parent="ZoneLoader"]
+position = Vector2(3512, 0)
+script = ExtResource("4_wjuti")
+zone_path = "res://scenes/level_3_Exit.tscn"
+
+[node name="LoadTrigger" type="Area2D" parent="ZoneLoader/level_3_Exit"]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneLoader/level_3_Exit/LoadTrigger"]
+position = Vector2(640, 400)
+shape = SubResource("RectangleShape2D_78mgd")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+z_index = -50
+position = Vector2(352, 264)
+scale = Vector2(9.2, 9.2)
+texture = SubResource("GradientTexture2D_lgbwq")
