@@ -1,7 +1,8 @@
 extends State
 
-@export var movespeed := int(350)
-@export var dash_max := int(500)
+@export var movespeed := float(350)
+@export var dash_max := float(500)
+@export var min_speed:float = 100
 var dashspeed := float(100)
 var can_dash := bool(false)
 var dash_direction := Vector2(0,0)
@@ -14,6 +15,9 @@ func Enter():
 	animator.play("walk")
 
 func Update(delta : float):
+	if player.is_dead:
+		Transition("dieing")
+		
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	Move(input_dir)
 	LessenDash(delta)
@@ -29,12 +33,15 @@ func Move(input_dir : Vector2):
 	if(dash_direction != Vector2.ZERO and dash_direction != input_dir):
 		dash_direction = Vector2.ZERO
 		dashspeed = 0
-
-	player.velocity = input_dir * movespeed + dash_direction * dashspeed 
+	var _min_speed = min_speed if input_dir.x>=0 else min_speed* 0.5  #slowdown when pressing left
+	#move at least with min_speed
+	player.velocity.x = maxf(_min_speed,minf(movespeed,(input_dir.x * movespeed)) + dash_direction.x * dashspeed)
+	player.velocity.y = input_dir.y * movespeed + dash_direction.y * dashspeed 
 	player.move_and_slide()
 
 	if(input_dir.length() <= 0):
-		Transition("idle")
+		#Transition("idle")   stay in moving to maintain min_speed
+		pass
 
 func start_dash(input_dir : Vector2):
 	#AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, -1)

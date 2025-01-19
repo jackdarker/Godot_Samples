@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="4_ni0ad"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ulw4v"]
-radius = 24.0
+radius = 16.0
 
 [node name="Meteor" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") groups=["Enemys"]]
 motion_mode = 1
@@ -16,11 +16,11 @@ healthbar = NodePath("healthbar")
 health = 3
 hit_particles = NodePath("HitParticles")
 
-[node name="WorldCollide" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ulw4v")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ahu0v")
+
+[node name="WorldCollide" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ulw4v")
 
 [node name="HitParticles" parent="." instance=ExtResource("3_d5ynm")]
 

@@ -14,10 +14,10 @@ const States = {
 @onready var initial_position = position
 #@onready var sprite:Node2D = $Sprite
 @onready var sprite_scale:float= sprite.scale.x
+@export var auto_move:bool = false #this will disable player input control f.e. in transition scenes
 var interactable:Node2D
 
-const SPEED = 60.0
-var lives = 1 # lives counter
+var lives = 3 # lives counter
 
 func _ready() -> void:
 	#$AnimationTree.active = true
@@ -32,7 +32,7 @@ func _ready() -> void:
 func Turn()->void:
 	pass	
 func old_physics_process(_delta: float) -> void:
-	#
+	const SPEED = 60.0
 	var direction_x = Input.get_axis("move_left", "move_right")
 	var direction_y = Input.get_axis("move_up", "move_down")
 	velocity.x=0
@@ -66,6 +66,8 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 		area.pickup(self)
 	
 func revive() -> void:
+	init_character()
+	$FSM.force_change_state("moving")
 	position = initial_position
 	# Lives counter
 	lives = lives - 1

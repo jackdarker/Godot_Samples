@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bthiqlsn0fnek"]
+[gd_scene load_steps=47 format=3 uid="uid://bthiqlsn0fnek"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_mkfal"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_04ni3"]
@@ -8,15 +8,25 @@
 [ext_resource type="Script" path="res://scenes/Player/player_attacking.gd" id="5_qiin8"]
 [ext_resource type="Script" path="res://scripts/attack_data.gd" id="6_qqshj"]
 [ext_resource type="Script" path="res://scenes/Player/player_interact.gd" id="7_tgejj"]
-[ext_resource type="Texture2D" uid="uid://cl4vbkhmcbyhx" path="res://assets/sprites/kenney_space/PNG/Effects/fire06.png" id="8_26gty"]
+[ext_resource type="Script" path="res://scenes/Player/player_dieing.gd" id="8_7cso8"]
 [ext_resource type="Texture2D" uid="uid://ywfc5an3v2um" path="res://assets/sprites/kenney_space/PNG/playerShip1_blue.png" id="8_j8r8e"]
-[ext_resource type="Texture2D" uid="uid://dibooaoq8t1wr" path="res://assets/sprites/kenney_space/PNG/Effects/fire07.png" id="9_te1ua"]
+[ext_resource type="Texture2D" uid="uid://bin282hxuak2y" path="res://assets/sprites/kenney_space/PNG/Effects/fire13.png" id="9_cmwl3"]
 [ext_resource type="Texture2D" uid="uid://iaj4byle35v3" path="res://assets/sprites/kenney_space/PNG/Effects/shield3.png" id="9_wsxft"]
 [ext_resource type="Texture2D" uid="uid://d3a6jkqp4aneb" path="res://assets/sprites/kenney_space/PNG/Effects/shield2.png" id="10_a40ro"]
-[ext_resource type="Texture2D" uid="uid://dovb15x8jvxbb" path="res://assets/sprites/kenney_space/PNG/Effects/fire03.png" id="10_lylug"]
+[ext_resource type="Texture2D" uid="uid://ersiwcc8xo7l" path="res://assets/sprites/kenney_space/PNG/Effects/fire16.png" id="10_gyskd"]
+[ext_resource type="Texture2D" uid="uid://c6ksey5bmgmnl" path="res://assets/sprites/kenney_space/PNG/Effects/fire17.png" id="11_84sud"]
 [ext_resource type="Texture2D" uid="uid://c65j2khb4pf17" path="res://assets/sprites/kenney_space/PNG/Effects/shield1.png" id="11_q66wt"]
+[ext_resource type="Texture2D" uid="uid://b6ytufsx1ndlg" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion07.png" id="12_qe714"]
+[ext_resource type="Texture2D" uid="uid://b6d3x0pjgi8ke" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion02.png" id="13_weh30"]
+[ext_resource type="Texture2D" uid="uid://b8xfpeb00ds4m" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion01.png" id="14_5qfw4"]
+[ext_resource type="Texture2D" uid="uid://bh5awow6kke34" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion00.png" id="15_36e44"]
 [ext_resource type="PackedScene" uid="uid://db14ruj48scp7" path="res://scenes/gun.tscn" id="15_edoxe"]
 [ext_resource type="PackedScene" uid="uid://cjk734egac8pp" path="res://scenes/sfx/shot_laser.tscn" id="16_1qelk"]
+[ext_resource type="Texture2D" uid="uid://c54i51nig4sec" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion08.png" id="16_e43f7"]
+[ext_resource type="Texture2D" uid="uid://cbsipjdc83cd5" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion04.png" id="17_tw5iw"]
+[ext_resource type="Texture2D" uid="uid://dpdy2a0dejpsi" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion05.png" id="18_tkvyp"]
+[ext_resource type="Texture2D" uid="uid://dlp1kxqjtolwl" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion06.png" id="19_8ua1e"]
+[ext_resource type="Texture2D" uid="uid://16khanaff8bx" path="res://assets/sprites/kenney_smoke-particles/PNG/Explosion/explosion03.png" id="20_uujny"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rn4eb"]
 radius = 30.6667
@@ -50,14 +60,50 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite/Exhaust:frame")
+tracks/2/path = NodePath("Sprite/Exhaust:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/Dieing:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/Dieing:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite/BodySprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_2obxn"]
@@ -115,19 +161,95 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/Exhaust:frame")
+tracks/0/path = NodePath("Sprite/Exhaust:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1, 2, 3, 0]
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Dieing:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/BodySprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xh0f4"]
+resource_name = "dieing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Exhaust:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Dieing:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Dieing:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 7, 7, 11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/BodySprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6al3p"]
 _data = {
 "RESET": SubResource("Animation_4ewtk"),
+"dieing": SubResource("Animation_xh0f4"),
 "idle": SubResource("Animation_2obxn"),
 "punch": SubResource("Animation_hygct"),
 "strike_long": SubResource("Animation_xgdku"),
@@ -160,7 +282,6 @@ input_2/reset = true
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_rs5yl"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f6fok"]
-graph_offset = Vector2(-294.701, -1.63627)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_skrc8")
 nodes/Animation/position = Vector2(-20, 180)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_q25t5")
@@ -174,22 +295,66 @@ nodes/walk_TimeScale/node = SubResource("AnimationNodeTimeScale_rs5yl")
 nodes/walk_TimeScale/position = Vector2(145.324, 158.634)
 node_connections = [&"output", 0, &"state", &"state", 0, &"Animation 2", &"state", 1, &"walk_TimeScale", &"state", 2, &"Animation 3", &"walk_TimeScale", 0, &"Animation"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_7yo4g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_cmwl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gyskd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_84sud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gyskd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_unoph"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_26gty")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_te1ua")
+"texture": ExtResource("12_qe714")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_26gty")
+"texture": ExtResource("13_weh30")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_lylug")
+"texture": ExtResource("14_5qfw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_36e44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_e43f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_tw5iw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_tkvyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8ua1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_uujny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qe714")
+}, {
+"duration": 1.0,
+"texture": null
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 10.0
 }]
@@ -212,7 +377,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5wm3"]
-radius = 10.6667
+radius = 42.6667
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmain"]
 size = Vector2(1066.67, 800)
@@ -223,14 +388,14 @@ motion_mode = 1
 script = ExtResource("1_mkfal")
 sprite = NodePath("Sprite")
 healthbar = NodePath("healthbar")
-health = 5
+health_max = 20
 metadata/Faction = 1
 
 [node name="WorldCollide" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rn4eb")
 
 [node name="FSM" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_gxmka")]
-initial_state = NodePath("idle")
+initial_state = NodePath("moving")
 
 [node name="idle" type="Node" parent="FSM" node_paths=PackedStringArray("animator")]
 script = ExtResource("3_y05h2")
@@ -258,6 +423,10 @@ damage = 2
 [node name="interact" type="Node" parent="FSM"]
 script = ExtResource("7_tgejj")
 
+[node name="dieing" type="Node" parent="FSM" node_paths=PackedStringArray("animator")]
+script = ExtResource("8_7cso8")
+animator = NodePath("../../AnimationPlayer")
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -277,11 +446,19 @@ parameters/walk_TimeScale/scale = 1.0
 [node name="Sprite" type="Node2D" parent="."]
 
 [node name="Exhaust" type="AnimatedSprite2D" parent="Sprite"]
-position = Vector2(-64, 0)
+position = Vector2(-64, 3.03165e-13)
+rotation = 1.5708
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7yo4g")
+autoplay = "default"
+frame_progress = 0.0115914
+
+[node name="Dieing" type="AnimatedSprite2D" parent="Sprite"]
+visible = false
 rotation = -1.57079
-scale = Vector2(3.5719, 2.16335)
+scale = Vector2(0.434185, 0.432533)
 sprite_frames = SubResource("SpriteFrames_unoph")
-frame = 1
+frame = 11
 
 [node name="BodySprite" type="Sprite2D" parent="Sprite"]
 position = Vector2(0, 1)
@@ -296,9 +473,8 @@ sprite_frames = SubResource("SpriteFrames_02lov")
 frame_progress = 0.85523
 
 [node name="hitbox" type="Area2D" parent="Sprite"]
-visible = false
 collision_layer = 2
-collision_mask = 2
+collision_mask = 3
 
 [node name="hitshape" type="CollisionShape2D" parent="Sprite/hitbox"]
 shape = SubResource("CircleShape2D_l5wm3")
@@ -378,5 +554,5 @@ visible = false
 shape = SubResource("RectangleShape2D_jmain")
 
 [connection signal="area_shape_entered" from="Sprite/hitbox" to="." method="_on_area_2d_area_shape_entered"]
-[connection signal="body_entered" from="Sprite/hitbox" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Sprite/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Sprite/hurtbox" to="FSM/attacking" method="_on_hitbox_body_entered"]

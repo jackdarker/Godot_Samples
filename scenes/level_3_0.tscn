@@ -53,6 +53,10 @@ rotation = 1.40565
 [node name="Node2D" parent="Path2D/PathFollow2D" instance=ExtResource("3_lnhat")]
 rotation = -1.40565
 
+[node name="Node2D2" parent="Path2D/PathFollow2D" instance=ExtResource("3_lnhat")]
+position = Vector2(-56.5532, -1.31519)
+rotation = -1.40565
+
 [node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
 position = Vector2(636.73, 197.617)
 rotation = -1.53872

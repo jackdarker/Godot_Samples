@@ -33,8 +33,8 @@ func _input(event):
 			get_tree().paused = true
 
 func player_revive()->void:
-	$Player.revive()
-	if $Player.lives <= 0:
+	$world.player.revive()
+	if $world.player.lives <= 0:
 		#get_node("/root/Pack-man/Lives/SprLifecounter0").visible = false
 		get_tree().paused = true
 		get_node("/root/Level/game_over_screen").visible = true

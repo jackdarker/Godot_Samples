@@ -2,11 +2,12 @@ class_name BaseCharacter extends CharacterBody2D
 
 @export var sprite : Node2D
 @export var healthbar : ProgressBar
-@export var health : int
+@export var health_max : int = 5
 @export var flipped_horizontal : bool
 @export var hit_particles : GPUParticles2D
 var invincible : bool = false
 var is_dead : bool = false
+var health:int
 
 func _ready():
 	init_character()
@@ -16,6 +17,8 @@ func _process(_delta):
 	
 #Add anything here that needs to be initialized on the character
 func init_character():
+	is_dead=false
+	health=health_max
 	healthbar.visible=false
 	healthbar.max_value = health
 	healthbar.value = health
@@ -69,6 +72,8 @@ func _die():
 	await get_tree().create_timer(1.0).timeout
 	if is_instance_valid(self) and not is_in_group("Player"):
 		queue_free()
+	if is_instance_valid(self) and is_in_group("Player"):
+		Global.player_death.emit()
 
 #endregion
 
@@ -104,3 +109,11 @@ func equip(slot:String,equipname:String)->bool:
 # taking this item (and equipping it)
 func useMe()->void:
 	pass
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	#if enemy collides into player-hitbox, cause massive damage to player and some damage to self
+	#Note projectiles are Area2D and are handled differently
+	if body.is_in_group("Enemys") && self.is_in_group("Player"):
+		body._take_damage(5)
+		self._take_damage(100)
