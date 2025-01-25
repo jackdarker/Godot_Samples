@@ -6,6 +6,8 @@ extends Node
 @export var Projectile:PackedScene
 @export var SpawnPoint:Node2D
 @export var SpawnGroup:String = "Enemys"
+@onready var parent:Node = get_node("/root/Level/dynamicInstances")
+
 var _readyTime:float
 
 func _ready() -> void:
@@ -15,12 +17,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if _readyTime<=0 && Input.is_action_pressed("attack_1"): # .is_action_just_pressed("attack_1"):
+	if _readyTime>0:
+		_readyTime-=delta
+	pass
+
+func trigger()->void:
+	if _readyTime<=0:
 		_readyTime=ROF
 		var shot=Projectile.instantiate()
 		shot.add_to_group(SpawnGroup)
+		shot.add_to_group("dynamic")		
 		shot.global_transform=SpawnPoint.global_transform
-		get_tree().root.add_child(shot)
-	else:
-		_readyTime-=delta
-	pass
+		shot.global_rotation=SpawnPoint.global_rotation
+		parent.add_child(shot)

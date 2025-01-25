@@ -10,6 +10,7 @@ func setBonus(bonus)->void:
 		Global.Bonus=1
 		
 func _ready() -> void:
+	reset()
 	get_tree().paused = false  #TODO handled by ready_counter
 	Global.score=0
 	Global.Bonus=1
@@ -32,7 +33,13 @@ func _input(event):
 			get_node("/root/Level/pause_screen").visible = true
 			get_tree().paused = true
 
+func reset()->void:
+	var nodes=get_tree().get_nodes_in_group("dynamic")
+	for i in nodes:	#delete projectiles
+		i.queue_free()
+
 func player_revive()->void:
+	reset()
 	$world.player.revive()
 	if $world.player.lives <= 0:
 		#get_node("/root/Pack-man/Lives/SprLifecounter0").visible = false

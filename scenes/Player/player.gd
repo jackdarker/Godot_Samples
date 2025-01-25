@@ -31,6 +31,12 @@ func _ready() -> void:
 #override: dont flip	
 func Turn()->void:
 	pass	
+	
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_pressed("attack_1"): # .is_action_just_pressed("attack_1"):
+		$Sprite/Laser1.trigger()
+	pass
+
 func old_physics_process(_delta: float) -> void:
 	const SPEED = 60.0
 	var direction_x = Input.get_axis("move_left", "move_right")

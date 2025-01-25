@@ -13,7 +13,8 @@ func _ready():
 	init_character()
 	
 func _process(_delta):
-	Turn()
+	#Turn()  rotate node instead
+	pass
 	
 #Add anything here that needs to be initialized on the character
 func init_character():

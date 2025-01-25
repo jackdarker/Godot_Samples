@@ -1,8 +1,9 @@
 extends Area2D
 
-const SPEED:float=100
+const SPEED:float=300
 const LIFETIME:float=3	#
 var lifetime:float
+var direction:Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,7 +13,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	position.x+=delta*SPEED
+	position.x+=delta*SPEED*cos(global_rotation)
+	position.y+=delta*SPEED*sin(global_rotation)
 	lifetime-=delta
 	if(lifetime<=0):
 		queue_free()

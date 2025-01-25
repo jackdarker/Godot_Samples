@@ -1,20 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://x3vkmpn8iqnt"]
+[gd_scene load_steps=6 format=3 uid="uid://x3vkmpn8iqnt"]
 
 [ext_resource type="Script" path="res://scenes/level_3_0.gd" id="1_h46xt"]
-[ext_resource type="PackedScene" uid="uid://c6wb1sbspc7lj" path="res://scenes/Meteor/Meteor.tscn" id="3_lnhat"]
 [ext_resource type="PackedScene" uid="uid://d1ucj5cn4x8p5" path="res://scenes/Player/player_spawn.tscn" id="3_ndgyx"]
+[ext_resource type="PackedScene" uid="uid://cg7itjymgty1c" path="res://scenes/Enemy2/Enemy2.tscn" id="4_6vqhk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3up8d"]
 distance = -8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47vu5"]
 size = Vector2(1280, 800)
-
-[sub_resource type="Curve2D" id="Curve2D_tt6e0"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 448, 576, -52.3251, -33.2978, 52.3251, 33.2978, 472, 720, 0, 0, 0, 0, 576, 664, 0, 0, 0, 0, 640, 352, -72, -101, 72, 101, 688, 104, 31, -31, -31, 31, 504, 272, -4.75683, -45.1899, 4.75683, 45.1899, 504, 408, 0, 0, 0, 0, 448, 576)
-}
-point_count = 8
 
 [node name="Level_3_0" type="Node2D"]
 script = ExtResource("1_h46xt")
@@ -42,24 +36,10 @@ collision_mask = 0
 position = Vector2(640, 400)
 shape = SubResource("RectangleShape2D_47vu5")
 
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(-16, 0)
-curve = SubResource("Curve2D_tt6e0")
+[node name="Enemy2" parent="." instance=ExtResource("4_6vqhk")]
+position = Vector2(168, 144)
+rotation = 3.14159
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(448, 576)
-rotation = 1.40565
-
-[node name="Node2D" parent="Path2D/PathFollow2D" instance=ExtResource("3_lnhat")]
-rotation = -1.40565
-
-[node name="Node2D2" parent="Path2D/PathFollow2D" instance=ExtResource("3_lnhat")]
-position = Vector2(-56.5532, -1.31519)
-rotation = -1.40565
-
-[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
-position = Vector2(636.73, 197.617)
-rotation = -1.53872
-progress = 758.852
-
-[node name="Node2D2" parent="Path2D/PathFollow2D2" instance=ExtResource("3_lnhat")]
+[node name="Enemy3" parent="." instance=ExtResource("4_6vqhk")]
+position = Vector2(792, 240)
+rotation = 2.73842

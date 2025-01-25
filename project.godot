@@ -38,6 +38,7 @@ Persist=""
 Player=""
 Enemys=""
 Exit=""
+dynamic=""
 
 [input]
 

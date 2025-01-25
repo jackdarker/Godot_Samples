@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://vtr4tqf07puy"]
+[gd_scene load_steps=6 format=4 uid="uid://vtr4tqf07puy"]
 
 [ext_resource type="Texture2D" uid="uid://bbkf15iyec1wh" path="res://assets/sprites/background2.png" id="1_7wfi2"]
 [ext_resource type="PackedScene" uid="uid://b1mms0rppi7pw" path="res://scenes/items/chest.tscn" id="2_gskkw"]
+[ext_resource type="PackedScene" uid="uid://dui8vmeqgmeoj" path="res://scenes/Meteor/Meteor_Elipse.tscn" id="3_uxqow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j5131"]
 texture = ExtResource("1_7wfi2")
@@ -282,3 +283,6 @@ tile_set = SubResource("TileSet_rsxyy")
 
 [node name="Chest" parent="." instance=ExtResource("2_gskkw")]
 position = Vector2(608, 312)
+
+[node name="Path2D" parent="." instance=ExtResource("3_uxqow")]
+position = Vector2(-256, -64)

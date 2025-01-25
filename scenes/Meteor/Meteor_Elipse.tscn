@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dui8vmeqgmeoj"]
+
+[ext_resource type="Script" path="res://scenes/Meteor/meteor_elipse.gd" id="1_n0lop"]
+[ext_resource type="PackedScene" uid="uid://c6wb1sbspc7lj" path="res://scenes/Meteor/Meteor.tscn" id="1_r4et0"]
+
+[sub_resource type="Curve2D" id="Curve2D_tt6e0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 448, 576, -52.3251, -33.2978, 52.3251, 33.2978, 472, 720, 0, 0, 0, 0, 576, 664, 0, 0, 0, 0, 640, 352, -72, -101, 72, 101, 688, 104, 31, -31, -31, 31, 504, 272, -4.75683, -45.1899, 4.75683, 45.1899, 504, 408, 0, 0, 0, 0, 448, 576)
+}
+point_count = 8
+
+[node name="Path2D" type="Path2D"]
+position = Vector2(-440, -88)
+curve = SubResource("Curve2D_tt6e0")
+script = ExtResource("1_n0lop")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(448, 576)
+rotation = 1.40565
+
+[node name="Node2D" parent="PathFollow2D" instance=ExtResource("1_r4et0")]
+rotation = -1.40565
+
+[node name="Node2D2" parent="PathFollow2D" instance=ExtResource("1_r4et0")]
+position = Vector2(-56.5532, -1.31519)
+rotation = -1.40565
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="."]
+position = Vector2(636.73, 197.617)
+rotation = -1.53872
+progress = 758.852
+
+[node name="Node2D2" parent="PathFollow2D2" instance=ExtResource("1_r4et0")]

@@ -215,7 +215,6 @@ motion_mode = 1
 script = ExtResource("1_l70d0")
 sprite = NodePath("Sprite")
 healthbar = NodePath("healthbar")
-health = 5
 metadata/Faction = 1
 metadata/_edit_group_ = true
 
