@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6wb1sbspc7lj"]
 
 [ext_resource type="Texture2D" uid="uid://d1o8q1r8ctqvi" path="res://assets/sprites/kenney_space/PNG/Meteors/meteorBrown_med1.png" id="1_ahu0v"]
-[ext_resource type="Script" path="res://scripts/BaseCharacter.gd" id="1_y33wm"]
+[ext_resource type="Script" uid="uid://c7qisex8521lk" path="res://scripts/BaseCharacter.gd" id="1_y33wm"]
 [ext_resource type="PackedScene" uid="uid://cpqvyagdf63om" path="res://scenes/sfx/hit_particles.tscn" id="3_d5ynm"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="4_ni0ad"]
 

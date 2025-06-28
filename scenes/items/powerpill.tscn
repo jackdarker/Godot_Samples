@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5pricjg55ygp"]
 
-[ext_resource type="Script" path="res://scenes/items/powerpill.gd" id="1_2e5wm"]
+[ext_resource type="Script" uid="uid://b84xeh74vgnsn" path="res://scenes/items/powerpill.gd" id="1_2e5wm"]
 [ext_resource type="Texture2D" uid="uid://dhmbx668t1uug" path="res://assets/sprites/spr_pill_0.png" id="2_i3avn"]
 [ext_resource type="AudioStream" uid="uid://dats740u6shm7" path="res://assets/audio/pacman_chomp.wav" id="3_g3u1c"]
 [ext_resource type="PackedScene" uid="uid://dpdcc00pv3sdr" path="res://scenes/items/Bouncy.tscn" id="4_xesb7"]

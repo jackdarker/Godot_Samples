@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjk734egac8pp"]
 
-[ext_resource type="Script" path="res://scenes/sfx/shot_laser.gd" id="1_d0njv"]
+[ext_resource type="Script" uid="uid://dped1h3i73cx0" path="res://scenes/sfx/shot_laser.gd" id="1_d0njv"]
 [ext_resource type="Texture2D" uid="uid://cb7o6e0qmllqc" path="res://assets/sprites/kenney_space/PNG/Lasers/laserBlue01.png" id="1_eq5qi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ybad6"]

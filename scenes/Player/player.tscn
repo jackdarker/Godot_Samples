@@ -1,14 +1,14 @@
 [gd_scene load_steps=47 format=3 uid="uid://bthiqlsn0fnek"]
 
-[ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_mkfal"]
+[ext_resource type="Script" uid="uid://eqv55lmtw68u" path="res://scenes/Player/player.gd" id="1_mkfal"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_04ni3"]
 [ext_resource type="PackedScene" uid="uid://dfyjda0sljktq" path="res://scripts/FSM.tscn" id="2_gxmka"]
-[ext_resource type="Script" path="res://scenes/Player/player_idle.gd" id="3_y05h2"]
-[ext_resource type="Script" path="res://scenes/Player/player_moving.gd" id="4_f0voq"]
-[ext_resource type="Script" path="res://scenes/Player/player_attacking.gd" id="5_qiin8"]
-[ext_resource type="Script" path="res://scripts/attack_data.gd" id="6_qqshj"]
-[ext_resource type="Script" path="res://scenes/Player/player_interact.gd" id="7_tgejj"]
-[ext_resource type="Script" path="res://scenes/Player/player_dieing.gd" id="8_7cso8"]
+[ext_resource type="Script" uid="uid://db4iqo7anskkp" path="res://scenes/Player/player_idle.gd" id="3_y05h2"]
+[ext_resource type="Script" uid="uid://pag6w53dqamt" path="res://scenes/Player/player_moving.gd" id="4_f0voq"]
+[ext_resource type="Script" uid="uid://l83dl6o3s0wq" path="res://scenes/Player/player_attacking.gd" id="5_qiin8"]
+[ext_resource type="Script" uid="uid://cmlcp5rebprvo" path="res://scripts/attack_data.gd" id="6_qqshj"]
+[ext_resource type="Script" uid="uid://d243b2apjw3wa" path="res://scenes/Player/player_interact.gd" id="7_tgejj"]
+[ext_resource type="Script" uid="uid://bu6dap04yc7m0" path="res://scenes/Player/player_dieing.gd" id="8_7cso8"]
 [ext_resource type="Texture2D" uid="uid://ywfc5an3v2um" path="res://assets/sprites/kenney_space/PNG/playerShip1_blue.png" id="8_j8r8e"]
 [ext_resource type="Texture2D" uid="uid://bin282hxuak2y" path="res://assets/sprites/kenney_space/PNG/Effects/fire13.png" id="9_cmwl3"]
 [ext_resource type="Texture2D" uid="uid://iaj4byle35v3" path="res://assets/sprites/kenney_space/PNG/Effects/shield3.png" id="9_wsxft"]
@@ -248,12 +248,12 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6al3p"]
 _data = {
-"RESET": SubResource("Animation_4ewtk"),
-"dieing": SubResource("Animation_xh0f4"),
-"idle": SubResource("Animation_2obxn"),
-"punch": SubResource("Animation_hygct"),
-"strike_long": SubResource("Animation_xgdku"),
-"walk": SubResource("Animation_d2j5l")
+&"RESET": SubResource("Animation_4ewtk"),
+&"dieing": SubResource("Animation_xh0f4"),
+&"idle": SubResource("Animation_2obxn"),
+&"punch": SubResource("Animation_hygct"),
+&"strike_long": SubResource("Animation_xgdku"),
+&"walk": SubResource("Animation_d2j5l")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q25t5"]
@@ -431,7 +431,7 @@ animator = NodePath("../../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6al3p")
+&"": SubResource("AnimationLibrary_6al3p")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

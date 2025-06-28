@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bxh5v7u36fjlf"]
 
-[ext_resource type="Script" path="res://scenes/items/ghost.gd" id="1_lte8w"]
+[ext_resource type="Script" uid="uid://dsscgyhjxeedq" path="res://scenes/items/ghost.gd" id="1_lte8w"]
 [ext_resource type="Texture2D" uid="uid://bb138vlj2jjnu" path="res://assets/sprites/spr_ghost.png" id="2_0r0mt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gf0nt"]

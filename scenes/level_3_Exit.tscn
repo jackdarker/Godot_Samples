@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://br6ol63kpd6li"]
 
-[ext_resource type="Script" path="res://scenes/items/area_exit.gd" id="1_r8k8k"]
+[ext_resource type="Script" uid="uid://brh0la5pif8ty" path="res://scenes/items/area_exit.gd" id="1_r8k8k"]
 [ext_resource type="PackedScene" uid="uid://c6wb1sbspc7lj" path="res://scenes/Meteor/Meteor.tscn" id="2_35sqg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3up8d"]

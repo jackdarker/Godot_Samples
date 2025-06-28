@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dui8vmeqgmeoj"]
 
-[ext_resource type="Script" path="res://scenes/Meteor/meteor_elipse.gd" id="1_n0lop"]
+[ext_resource type="Script" uid="uid://dqgchmhjwixpb" path="res://scenes/Meteor/meteor_elipse.gd" id="1_n0lop"]
 [ext_resource type="PackedScene" uid="uid://c6wb1sbspc7lj" path="res://scenes/Meteor/Meteor.tscn" id="1_r4et0"]
 
 [sub_resource type="Curve2D" id="Curve2D_tt6e0"]
