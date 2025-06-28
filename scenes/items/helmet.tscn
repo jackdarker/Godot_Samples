@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ceubbuulswyye"]
 
-[ext_resource type="Script" path="res://scenes/items/helmet.gd" id="1_m7hho"]
+[ext_resource type="Script" uid="uid://bgvcchsf7aks4" path="res://scenes/items/helmet.gd" id="1_m7hho"]
 [ext_resource type="Texture2D" uid="uid://bo47t2tyohn1c" path="res://assets/sprites/Kenney/PNG/Default/item_helmet.png" id="2_fipv8"]
 [ext_resource type="Texture2D" uid="uid://crk4d286l6kkc" path="res://assets/sprites/Kenney/PNG/Default/item_sword.png" id="3_oj0hu"]
 [ext_resource type="PackedScene" uid="uid://dpdcc00pv3sdr" path="res://scenes/items/Bouncy.tscn" id="4_0mxlt"]

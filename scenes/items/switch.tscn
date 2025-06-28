@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpm4jyojw7l6x"]
 
-[ext_resource type="Script" path="res://scenes/items/switch.gd" id="1_x53s2"]
+[ext_resource type="Script" uid="uid://bcnb8hrgcsobv" path="res://scenes/items/switch.gd" id="1_x53s2"]
 [ext_resource type="Texture2D" uid="uid://3m6elju82ti" path="res://assets/sprites/Kenney/PNG/Default/ui_box.png" id="2_gnjaa"]
 [ext_resource type="Texture2D" uid="uid://dt1bvyq1j7i5k" path="res://assets/sprites/Kenney/PNG/Default/effect_blast.png" id="3_cswqt"]
 

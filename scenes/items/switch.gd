@@ -1,14 +1,14 @@
 extends Area2D
 
 @export_multiline var Message:String = "use me" #
-@export var onUse:Callable
+signal switch(on:bool)
 
 func _ready() -> void:
 	$Sprite/State1.visible=false
 	pass # Replace with function body.
 
 func useMe()->void:
-	onUse.call()
+	emit_signal("switch", true)
 	$Sprite/State1.visible=true
 	pass
 

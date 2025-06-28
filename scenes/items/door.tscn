@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5eb0eikc2g0s"]
+
+[ext_resource type="Script" uid="uid://cny0pgi7n78bn" path="res://scenes/items/door.gd" id="1_ednjy"]
+[ext_resource type="Texture2D" uid="uid://b7c7y62rss0cv" path="res://assets/sprites/Kenney/PNG/Default (64px)/doorway.png" id="2_grll7"]
+[ext_resource type="Texture2D" uid="uid://b0doeyefll2wm" path="res://assets/sprites/Kenney/PNG/Default (64px)/door_closed.png" id="3_2m011"]
+[ext_resource type="Texture2D" uid="uid://dwrms1qaamx4f" path="res://assets/sprites/Kenney/PNG/Default (64px)/door_open.png" id="4_rsvgx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m86v8"]
+size = Vector2(48, 24)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ednjy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grll7"]
+size = Vector2(48, 8)
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_ednjy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_m86v8")
+
+[node name="Sprite" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="Open" type="Sprite2D" parent="Sprite"]
+visible = false
+texture = ExtResource("2_grll7")
+
+[node name="Closed" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("3_2m011")
+
+[node name="Open2" type="Sprite2D" parent="Sprite"]
+visible = false
+texture = ExtResource("4_rsvgx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ednjy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_grll7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

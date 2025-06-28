@@ -1,14 +1,14 @@
 [gd_scene load_steps=17 format=3 uid="uid://bt6th05osre1t"]
 
-[ext_resource type="Script" path="res://scenes/Enemy1/enemy.gd" id="1_l70d0"]
+[ext_resource type="Script" uid="uid://dnri1jdwuxn1s" path="res://scenes/Enemy1/enemy.gd" id="1_l70d0"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_2jipy"]
 [ext_resource type="Texture2D" uid="uid://qw57hrgxteau" path="res://assets/sprites/Kenney/PNG/Default/character_handRed.png" id="3_2t6jo"]
 [ext_resource type="Texture2D" uid="uid://dorbnubeq2ukk" path="res://assets/sprites/Kenney/PNG/Default/character_squareYellow.png" id="4_f61m6"]
 [ext_resource type="Texture2D" uid="uid://dlnk55ayxqp3h" path="res://assets/sprites/Kenney/PNG/Default/character_handPurple.png" id="5_onbfo"]
-[ext_resource type="Script" path="res://scripts/FSM.gd" id="7_yokpx"]
-[ext_resource type="Script" path="res://scenes/Enemy1/enemy_idle.gd" id="8_0pqx2"]
+[ext_resource type="Script" uid="uid://ctprgwxhabcci" path="res://scripts/FSM.gd" id="7_yokpx"]
+[ext_resource type="Script" uid="uid://dh15pd4jgqaan" path="res://scenes/Enemy1/enemy_idle.gd" id="8_0pqx2"]
 [ext_resource type="PackedScene" uid="uid://cpqvyagdf63om" path="res://scenes/sfx/hit_particles.tscn" id="8_6u1lg"]
-[ext_resource type="Script" path="res://scenes/Enemy1/enemy_alert.gd" id="9_k27ww"]
+[ext_resource type="Script" uid="uid://b2ae1a6n036tk" path="res://scenes/Enemy1/enemy_alert.gd" id="9_k27ww"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rn4eb"]
 radius = 32.1403
@@ -202,10 +202,10 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6al3p"]
 _data = {
-"RESET": SubResource("Animation_4ewtk"),
-"alert": SubResource("Animation_xu5ne"),
-"idle": SubResource("Animation_63prt"),
-"walk": SubResource("Animation_d2j5l")
+&"RESET": SubResource("Animation_4ewtk"),
+&"alert": SubResource("Animation_xu5ne"),
+&"idle": SubResource("Animation_63prt"),
+&"walk": SubResource("Animation_d2j5l")
 }
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar") groups=["Enemys", "Persist"]]

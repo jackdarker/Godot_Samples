@@ -17,5 +17,5 @@ func setInteractable(interactable:Node2D)->void:
 	pass
 
 func interactWith()->void:
-	body.useMe()
+	if(body): body.useMe()
 	pass

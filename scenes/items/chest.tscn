@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1mms0rppi7pw"]
+[gd_scene load_steps=4 format=3 uid="uid://b1mms0rppi7pw"]
 
+[ext_resource type="Texture2D" uid="uid://dwnoh15gs65n4" path="res://assets/sprites/Kenney/PNG/Default/tile_castle.png" id="1_2obnk"]
 [ext_resource type="Texture2D" uid="uid://cthq4rlrg2i5q" path="res://assets/sprites/Kenney/PNG/Default/tile_chest.png" id="1_hehud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xpkd"]
@@ -11,7 +12,14 @@ size = Vector2(48, 40)
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_8xpkd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Closed" type="Sprite2D" parent="Sprite"]
 position = Vector2(1.43051e-06, 4)
 scale = Vector2(0.75, 0.625)
 texture = ExtResource("1_hehud")
+
+[node name="Open" type="Sprite2D" parent="Sprite"]
+position = Vector2(-2.38419e-07, 4)
+scale = Vector2(0.75, 0.615385)
+texture = ExtResource("1_2obnk")
