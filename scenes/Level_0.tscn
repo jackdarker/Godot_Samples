@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bbkf15iyec1wh" path="res://assets/sprites/background2.png" id="1_6d4u8"]
 [ext_resource type="PackedScene" uid="uid://d3eeqxp0nyj4s" path="res://scenes/pill.tscn" id="1_ieyx4"]
 [ext_resource type="PackedScene" uid="uid://bxh5v7u36fjlf" path="res://scenes/ghost.tscn" id="1_kdxge"]
-[ext_resource type="Script" path="res://scenes/level_0.gd" id="1_w2bro"]
+[ext_resource type="Script" uid="uid://boxvshxxsppy3" path="res://scenes/level_0.gd" id="1_w2bro"]
 [ext_resource type="PackedScene" uid="uid://cebipfg1vjhof" path="res://scenes/pause_screen.tscn" id="2_amq2j"]
 [ext_resource type="PackedScene" uid="uid://bthiqlsn0fnek" path="res://scenes/player.tscn" id="2_lbk76"]
 [ext_resource type="PackedScene" uid="uid://b7haxlf1ebksd" path="res://scenes/game_over_screen.tscn" id="2_vcpb5"]

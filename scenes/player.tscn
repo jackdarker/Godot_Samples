@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bthiqlsn0fnek"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_mkfal"]
+[ext_resource type="Script" uid="uid://0pmtrjc6itqw" path="res://scenes/player.gd" id="1_mkfal"]
 [ext_resource type="Texture2D" uid="uid://cffp0mg653pty" path="res://assets/sprites/pacman.png" id="2_sq3c4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ibum"]

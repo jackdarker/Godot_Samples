@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://foii04bkgtxu"]
 
-[ext_resource type="Script" path="res://scenes/hud.gd" id="1_fcgum"]
+[ext_resource type="Script" uid="uid://vb5gh6bboa4p" path="res://scenes/hud.gd" id="1_fcgum"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ro6dt"]
 

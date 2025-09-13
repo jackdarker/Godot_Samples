@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2komhji0x4ic"]
 
 [ext_resource type="AudioStream" uid="uid://cmc1m6r0ti3ls" path="res://assets/audio/Select 1.wav" id="1_0pu6f"]
-[ext_resource type="Script" path="res://scenes/ready_counter.gd" id="1_067dq"]
+[ext_resource type="Script" uid="uid://d13jk6mm0rpnw" path="res://scenes/ready_counter.gd" id="1_067dq"]
 
 [sub_resource type="Theme" id="Theme_qa2ur"]
 
