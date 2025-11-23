@@ -24,6 +24,8 @@ SaveLoad="*res://scenes/save_load.gd"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/size/mode=2
+window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 
