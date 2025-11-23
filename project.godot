@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="PacMan"
-run/main_scene="uid://psm7yxcbcwgk"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="uid://dgcscmok8h51i"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
