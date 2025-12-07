@@ -3,15 +3,30 @@ extends Window
 
 
 @onready var SceneListItem = load("res://scenes/ImageListItem.tscn")
+var UID:int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
+func saveData()->Dictionary:
+	var data ={
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"UID":UID,
+		"x":position.x,
+		"y":position.y,
+	}
+	return data
+
+func loadData(data: Dictionary):
+	position.x = data["x"]
+	position.y = data["y"]
+	UID=data["UID"]
 
 func _on_button_pressed() -> void:
 	%FileDialog.popup_centered_ratio()
@@ -57,8 +72,6 @@ func _displayImage(path)->void:
 func _loadImgToTexture(path,max_width,max_height)->ImageTexture:
 	var m_ImageScalingMode=-1
 	var image = Image.load_from_file(path)
-	var Width =max_width
-	var Height = max_height
 	var ImageWidth=image.get_width()
 	var ImageHeight=image.get_height()
 	var Ratio_W = max_width/ImageWidth
@@ -67,7 +80,7 @@ func _loadImgToTexture(path,max_width,max_height)->ImageTexture:
 	if ((m_ImageScalingMode == -1) || (m_ImageScalingMode == -2 && scale < 1)):
 		image.resize(snapped(ImageWidth * scale,2),snapped(ImageHeight * scale,2))
 	elif ((1 <= m_ImageScalingMode) && (m_ImageScalingMode <= 1000)):
-		image.resize(snapped((ImageWidth * m_ImageScalingMode) / 100,2),snapped((ImageHeight * m_ImageScalingMode) / 100,2))
+		image.resize(snapped((ImageWidth * m_ImageScalingMode) / 100.0,2),snapped((ImageHeight * m_ImageScalingMode) / 100.0,2))
 	else:
 		pass
 	var texture = ImageTexture.create_from_image(image)
@@ -79,13 +92,13 @@ func _loadImgToList(path)->void:
 	var ThumbnailSize = 128
 	var Width =0
 	var Height = 0
-	var Ratio = image.get_width() / image.get_height()
+	var Ratio = image.get_width() / float(image.get_height())
 	if Ratio>= 1.0:
 		Width = ThumbnailSize;
-		Height = (Width * image.get_height()) / image.get_width();
+		Height = (Width * image.get_height()) / float(image.get_width());
 	else:
 		Height = ThumbnailSize;
-		Width = (Height * image.get_width()) / image.get_height();
+		Width = (Height * image.get_width()) / float(image.get_height());
 
 	image.resize(Width,Height)
 	var texture = ImageTexture.create_from_image(image)
@@ -120,7 +133,6 @@ func _appendDir(item: TreeItem)->void:
 	if !is_inside_tree():
 		return
 	var tree=%Tree
-	var folder_name=item.get_text(0)
 	var full_path:String=item.get_metadata(0)
 	var dir = DirAccess.open(full_path)
 	if dir:
@@ -170,3 +182,11 @@ func _on_close_requested() -> void:
 	hide()
 	call_deferred("free")
 	pass # Replace with function body.
+
+
+func _on_button_4_pressed() -> void:
+	SaveLoadMgr.save("c://temp//savegame.save")
+
+
+func _on_button_5_pressed() -> void:
+	SaveLoadMgr.load("c://temp//savegame.save")
