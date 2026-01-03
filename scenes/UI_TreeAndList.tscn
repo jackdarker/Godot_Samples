@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpnkht8wibvhb"]
+
+[ext_resource type="Script" uid="uid://b0qb5hmrbalew" path="res://scenes/ui_treeandlist.gd" id="1_tt8li"]
+[ext_resource type="Texture2D" uid="uid://d1fimttgn5gjd" path="res://assets/sprites/spr_cherry_0.png" id="2_ys2j5"]
+
+[node name="UiTreeAndList" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tt8li")
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 352.0
+offset_bottom = 240.0
+item_count = 2
+item_0/text = "Item1"
+item_1/text = "Item2"
+item_1/icon = ExtResource("2_ys2j5")

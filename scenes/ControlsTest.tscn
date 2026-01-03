@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgcscmok8h51i"]
 
-[ext_resource type="Script" uid="uid://bvuvr65i1q0lf" path="res://scenes/controls_test.gd" id="1_ad1ey"]
+[ext_resource type="Script" uid="uid://drj034ayuaque" path="res://scenes/controls_test.gd" id="1_ad1ey"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_c4l0b"]
 [ext_resource type="PackedScene" uid="uid://c8qw0h1nshdir" path="res://scenes/ImageListItem.tscn" id="3_c4l0b"]
 
@@ -80,11 +80,13 @@ file_mode = 0
 access = 2
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="size_changed" from="." to="." method="_on_size_changed"]
 [connection signal="pressed" from="HBoxContainer/Container/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Container/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="HBoxContainer/Container/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="HBoxContainer/Container/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="HBoxContainer/Container/VBoxContainer/Button5" to="." method="_on_button_5_pressed"]
+[connection signal="resized" from="HBoxContainer/TextureRect" to="." method="_on_texture_rect_resized"]
 [connection signal="item_collapsed" from="HBoxContainer/Tree" to="." method="_on_tree_item_collapsed"]
 [connection signal="item_selected" from="HBoxContainer/Tree" to="." method="_on_tree_item_selected"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

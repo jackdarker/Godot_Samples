@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://psm7yxcbcwgk"]
+
+[ext_resource type="PackedScene" uid="uid://cbibiv2ich566" path="res://scenes/UITest1.tscn" id="1_o3eu6"]
+
+[node name="UItest" type="Node2D"]
+
+[node name="UiTest1" parent="." instance=ExtResource("1_o3eu6")]
+offset_right = 600.0
+offset_bottom = 360.0

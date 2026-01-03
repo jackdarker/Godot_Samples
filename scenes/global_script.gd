@@ -74,3 +74,64 @@ func updateHighscore():
 		SaveLoad.save_highscore(Global.highscores)
 	elif(Global.highscores.size()<maxEntrys):
 		Global.highscores.append(entry)
+
+var GlobalViewer=null
+func getGlobalViewer():
+	if !GlobalViewer:
+		var s = ResourceLoader.load("res://scenes/ControlsTest2.tscn")
+		GlobalViewer=s.instantiate()
+		get_tree().root.add_child.call_deferred(GlobalViewer)		
+	
+	return GlobalViewer
+
+func loadImgToTexture(path,max_width,max_height)->ImageTexture:
+	var m_ImageScalingMode=-1
+	var image = Image.load_from_file(path)
+	var ImageWidth=image.get_width()
+	var ImageHeight=image.get_height()
+	var Ratio_W = max_width/ImageWidth
+	var Ratio_H = max_height/ImageHeight
+	var scale = min(Ratio_W, Ratio_H);
+	if ((m_ImageScalingMode == -1) || (m_ImageScalingMode == -2 && scale < 1)):
+		image.resize(snapped(ImageWidth * scale,2),snapped(ImageHeight * scale,2))
+	elif ((1 <= m_ImageScalingMode) && (m_ImageScalingMode <= 1000)):
+		image.resize(snapped((ImageWidth * m_ImageScalingMode) / 100.0,2),snapped((ImageHeight * m_ImageScalingMode) / 100.0,2))
+	else:
+		pass
+	var texture = ImageTexture.create_from_image(image)
+	return(texture)
+
+#region tasks
+
+class Task extends Object:
+	signal finished(taskid)
+	var taskid
+	
+	func _init(taskid):
+		self.taskid=taskid
+	
+	func is_completed()->bool:
+		return WorkerThreadPool.is_task_completed(taskid)
+		
+	func cleanup():
+		if (WorkerThreadPool.is_task_completed(taskid)):
+			WorkerThreadPool.wait_for_task_completion(taskid)
+			finished.emit(taskid)
+
+var tasks=[]
+func create_task(action:Callable,high_priority=false,args=[]):
+	var taskid= WorkerThreadPool.add_task(action,high_priority)
+	var task = Task.new(taskid)
+	tasks.append(task)
+	return task
+
+func _process(_delta: float) -> void:
+	var completed = tasks.filter(
+		func filter(task:Task):
+			return task.is_completed()
+	)
+	for task:Task in completed:
+		task.cleanup()
+		tasks.erase(task)
+	
+#endregion	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8qw0h1nshdir"]
 
 [ext_resource type="Texture2D" uid="uid://ctf1nnrx8qcs4" path="res://icon.svg" id="1_67525"]
-[ext_resource type="Script" uid="uid://6b5pfufr2ut5" path="res://scenes/image_list_item.gd" id="1_vn0ym"]
+[ext_resource type="Script" uid="uid://x3u42kg8j1kk" path="res://scenes/image_list_item.gd" id="1_vn0ym"]
 
 [node name="ImageListItem" type="VBoxContainer"]
 anchors_preset = 8
