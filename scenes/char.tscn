@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://gu25i54e2moo"]
+
+[ext_resource type="PackedScene" uid="uid://8foxkbbmeljy" path="res://assets/3d/lowpoly_char.glb" id="1_pkhve"]
+[ext_resource type="Script" uid="uid://c2gu26j0rwf3w" path="res://char.gd" id="2_s4dg7"]
+
+[node name="char" instance=ExtResource("1_pkhve")]
+script = ExtResource("2_s4dg7")
+
+[node name="Skeleton3D" parent="." index="0"]
+bones/9/rotation = Quaternion(0.7505244, 0.37976038, 0.3350996, -0.4245038)
+bones/10/rotation = Quaternion(-0.124378785, 0.81304413, -0.36731145, 0.4342482)
+bones/15/rotation = Quaternion(0.7447845, -0.38857982, -0.34287477, -0.42040312)
+bones/16/rotation = Quaternion(-0.19621308, -0.7970156, 0.39794123, 0.40976736)
+bones/25/rotation = Quaternion(0.2159251, 0.8360082, 0.24429716, -0.44134516)
+bones/32/rotation = Quaternion(2.4101556e-07, 0.79437083, -0.5964426, -0.11502716)
+bones/41/rotation = Quaternion(-0.5617043, 0.56170464, -0.5030861, -0.34041253)

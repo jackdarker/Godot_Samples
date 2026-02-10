@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bio8b8pcplse4"]
+
+[ext_resource type="PackedScene" uid="uid://gu25i54e2moo" path="res://scenes/char.tscn" id="1_ofurv"]
+
+[node name="DollTest" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "play animation"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2814445, 5)
+
+[node name="char" parent="." instance=ExtResource("1_ofurv")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -5, 0, 6)
+
+[connection signal="pressed" from="CanvasLayer/Button" to="char" method="runAnimation"]
