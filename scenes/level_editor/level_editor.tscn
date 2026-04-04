@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8cal44ud2rbq"]
+
+[ext_resource type="Script" uid="uid://kem6i5fco7f6" path="res://scenes/level_editor/level_editor.gd" id="1_ahyo7"]
+
+[node name="LevelEditor" type="CanvasLayer"]
+script = ExtResource("1_ahyo7")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="btn_place" type="Button" parent="Panel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "place"
+
+[node name="btn_select" type="Button" parent="Panel/VBox"]
+layout_mode = 2
+text = "select"
+
+[node name="btn_move" type="Button" parent="Panel/VBox"]
+layout_mode = 2
+text = "move"
+
+[node name="btn_rotate" type="Button" parent="Panel/VBox"]
+layout_mode = 2
+text = "rotate"
+
+[node name="btn_delete" type="Button" parent="Panel/VBox"]
+layout_mode = 2
+text = "delete"
+
+[node name="btn_save" type="Button" parent="Panel/VBox"]
+layout_mode = 2
+text = "save"
+
+[node name="btn_load" type="Button" parent="Panel/VBox"]
+layout_mode = 2
+text = "load"

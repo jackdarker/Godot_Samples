@@ -21,7 +21,26 @@ var Bonus:int=1
 
 var current_scene = null
 
-enum MODE{SLEEP,CHASE,SCATTER,FRIGHTENED,RUN}
+#region level_editor
+enum MODE{SIM,BUILD}
+signal mode_change(mode:MODE)
+
+var editing = false
+var current_tool = "place"
+var snap_size = 32
+var selected_node = null
+
+func enter_mode(mode:MODE):
+	if mode==MODE.BUILD:
+		editing = true
+		#get_tree().paused = true
+		get_node("/root/Level/LevelEditor").visible = true
+	else:
+		editing = false
+		#get_tree().paused = false
+		get_node("/root/Level/LevelEditor").visible = false
+		selected_node = null
+#endregion
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,

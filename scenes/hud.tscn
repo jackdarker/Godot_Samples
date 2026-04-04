@@ -57,3 +57,16 @@ max_value = 3.0
 step = 1.0
 value = 1.0
 show_percentage = false
+
+[node name="bt_mode" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_right = 19.0
+offset_bottom = 31.0
+grow_horizontal = 2
+toggle_mode = true
+text = "edit"
+
+[connection signal="toggled" from="bt_mode" to="." method="_on_bt_mode_toggled"]
