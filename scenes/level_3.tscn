@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=4 uid="uid://bqxnxutfssmtw"]
+[gd_scene load_steps=2 format=4 uid="uid://bqxnxutfssmtw"]
 
 [ext_resource type="TileSet" uid="uid://bn87te25rihm1" path="res://scenes/level_editor/ground_tileset.tres" id="1_uwxec"]
-[ext_resource type="PackedScene" uid="uid://d1qlk0tqs6koc" path="res://scenes/level_editor/floor1x4.tscn" id="3_1pn4d"]
 
 [node name="Level_3" type="Node2D"]
 
@@ -17,11 +16,3 @@ tile_set = ExtResource("1_uwxec")
 [node name="Spawn_Player" type="Marker2D" parent="."]
 position = Vector2(116, 1080)
 gizmo_extents = 23.0
-
-[node name="build" type="Node" parent="."]
-
-[node name="Floor1x4" parent="build" instance=ExtResource("3_1pn4d")]
-position = Vector2(632, 256)
-
-[node name="Floor1x5" parent="build" instance=ExtResource("3_1pn4d")]
-position = Vector2(888, 256)

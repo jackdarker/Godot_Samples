@@ -1,6 +1,7 @@
 extends Node
 @onready var edit_ui = $Panel
 @onready var place_btn = $Panel/VBox/btn_place
+@onready var list_btn = $Panel/VBox/btn_list
 @onready var select_btn = $Panel/VBox/btn_select
 @onready var move_btn = $Panel/VBox/btn_move
 @onready var rotate_btn = $Panel/VBox/btn_rotate
@@ -9,12 +10,14 @@ extends Node
 #snap_spin = $EditorUI/Panel/VBox/SnapHBox/SnapSpin
 @onready var save_btn = $Panel/VBox/btn_save
 @onready var load_btn = $Panel/VBox/btn_load
+@onready var lst_build = $lst_build
 
 var current_tool: String = "place" # "place","select","move","rotate","delete"
+var current_stamp: PackedScene
 var snap_size: int = 64
 var selected_node: Node2D = null
-var room_scene: PackedScene = load("res://scenes/level_editor/room4x4.tscn")
-var floor_scene: PackedScene = load("res://scenes/level_editor/floor1x4.tscn")
+#var room_scene: PackedScene = load("res://scenes/level_editor/room4x4.tscn")
+#var floor_scene: PackedScene = load("res://scenes/level_editor/floor1x4.tscn")
 
 var ghost: Node2D = null
 var dragging: bool = false
@@ -25,6 +28,7 @@ func _ready():
 	#edit_toggle.pressed = false
 	#edit_toggle.connect("pressed", Callable(self, "_on_edit_toggle_pressed"))
 	place_btn.pressed.connect(_on_tool_pressed.bind("place"))
+	list_btn.pressed.connect(lst_build.show)
 	select_btn.pressed.connect(_on_tool_pressed.bind("select"))
 	move_btn.pressed.connect(_on_tool_pressed.bind("move"))
 	rotate_btn.pressed.connect(_on_tool_pressed.bind("rotate"))
@@ -32,19 +36,26 @@ func _ready():
 	#snap_spin.connect("value_changed", Callable(self, "_on_snap_changed"))
 	save_btn.pressed.connect(_on_save_pressed)
 	load_btn.pressed.connect(_on_load_pressed)
+	lst_build.sel_changed.connect(_on_building_sel)
 	# Create ghost node container
 	ghost = Node2D.new()
 	ghost.visible = false
 	add_child(ghost)
+	_on_building_sel("floor1x4")
+	lst_build.visible=false
 	self.visible=false
 
 func _on_tool_pressed(tool):
 	current_tool = tool
 	_update_tool_buttons(tool)
 
+func _on_building_sel(item):
+	current_stamp= load("res://scenes/level_editor/"+item+".tscn")
+	list_btn.text=item
+
 func _update_tool_buttons(active):
 	# visual feedback
-	for b:Button in [place_btn, select_btn, move_btn, rotate_btn, delete_btn]:
+	for b:Button in [place_btn,list_btn, select_btn, move_btn, rotate_btn, delete_btn]:
 		b.button_pressed = b.text.to_lower() == active
 
 func _on_snap_changed(value):
@@ -86,13 +97,14 @@ func _unhandled_input(event):
 
 func _place_node_at(pos: Vector2):
 	# Default to placing a Room; you could add UI to pick type
-	var scene = room_scene
+	var scene = current_stamp
 	if not scene:
 		return
 	var inst = scene.instantiate()
 	inst.position = pos
 	var entities = get_node("/root/Level/level_data")
 	entities.add_child(inst)
+	#TODO warn if entity intersect with other
 
 func _select_at(world_pos: Vector2):
 	var picked = _pick_node_at(world_pos)
@@ -131,31 +143,41 @@ func _pick_node_at(world_pos: Vector2) -> Node2D:
 		if c is Node2D:
 			var local = c.to_global(Vector2.ZERO)
 			# simple bounding test using sprite rect if available
-			if c.has_node("Sprite"):
-				var sp = c.get_node("Sprite") as Sprite2D
-				var tex = sp.texture
-				if tex:
-					var rect = Rect2(c.global_position - sp.texture.get_size() * 0.5 * c.scale, sp.texture.get_size() * c.scale)
+			if c.has_node("Ly_Gnd"):
+				var sp = c.get_node("Ly_Gnd") as TileMapLayer
+				if(true):
+					var size:Vector2i=sp.get_used_rect().size*sp.tile_set.tile_size.x
+					sp.tile_set.tile_size.x
+					var rect=Rect2(c.global_position-size*0.5,size)
 					if rect.has_point(world_pos):
-						return c
-					# fallback: distance test
+							return c
+						# fallback: distance test
 					if c.global_position.distance_to(world_pos) < snap_size * 0.75:
 						return c
+				else:
+					var tex = sp.texture
+					if tex:
+						var rect = Rect2(c.global_position - sp.texture.get_size() * 0.5 * c.scale, sp.texture.get_size() * c.scale)
+						if rect.has_point(world_pos):
+							return c
+						# fallback: distance test
+						if c.global_position.distance_to(world_pos) < snap_size * 0.75:
+							return c
 	return null
 
 func _update_selection_visual():
 	# simple highlight by modulating sprite
 	var entities = get_node("/root/Level/level_data")
 	for c in entities.get_children():
-		if c.has_node("Sprite"):
-			var sp = c.get_node("Sprite") as Sprite2D
+		if c.has_node("Ly_Gnd"):
+			var sp = c.get_node("Ly_Gnd") as TileMapLayer
 			if c == selected_node:
 				sp.modulate = Color(1,0.8,0.4,1)
 			else:
 				sp.modulate = Color(1,1,1,1)
 
 func _on_save_pressed():
-	var entities = get_node("/root/Main/Game/Entities")
+	var entities = get_node("/root/Level/level_data")
 	var out = []
 	for c in entities.get_children():
 		var entry = {
@@ -184,7 +206,7 @@ func _on_load_pressed():
 	var path = "user://levels/level1.json"
 	if not FileAccess.file_exists(path):
 		print("No saved level at ", path)
-	return
+
 	var f = FileAccess.open(path, FileAccess.READ)
 	if not f:
 		return
@@ -203,9 +225,9 @@ func _on_load_pressed():
 		var tname = entry.get("type", "Room")
 		var scene: PackedScene = null
 		if tname == "Room":
-			scene = room_scene
-		elif tname == "Floorway":
-			scene = floor_scene
+			scene = current_stamp	#TODO
+		elif tname == "Floorway":	
+			scene = current_stamp#TODO
 		if scene:
 			var inst = scene.instantiate()
 			inst.position = Vector2(entry["position"][0], entry["position"][1])

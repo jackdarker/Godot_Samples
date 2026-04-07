@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cexgcbaujfres"]
+
+[ext_resource type="Script" uid="uid://br4q6n3r16x1q" path="res://scenes/level_editor/list_buildings.gd" id="1_2lyyd"]
+
+[node name="Control" type="Window"]
+oversampling_override = 1.0
+size = Vector2i(200, 400)
+script = ExtResource("1_2lyyd")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Panel/HFlowContainer"]
+layout_mode = 2
+text = "floor1x4"
+
+[node name="Button2" type="Button" parent="Panel/HFlowContainer"]
+layout_mode = 2
+text = "room4x4"
