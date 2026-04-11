@@ -23,6 +23,8 @@ var ghost: Node2D = null
 var dragging: bool = false
 var drag_offset := Vector2.ZERO
 
+const build_node:String = "/root/Level/level_data/buildings"
+
 func _ready():
 	# Wire UI
 	#edit_toggle.pressed = false
@@ -77,6 +79,8 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion and dragging and current_tool == "move" and selected_node:
 		var pos = snap_pos(world_mouse_pos() + drag_offset)
 		selected_node.position = pos
+		_check_node_placement(selected_node)
+		_update_selection_visual()
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var mp = world_mouse_pos()
 		var pos = snap_pos(mp)
@@ -102,9 +106,36 @@ func _place_node_at(pos: Vector2):
 		return
 	var inst = scene.instantiate()
 	inst.position = pos
-	var entities = get_node("/root/Level/level_data")
+	var entities = get_node(build_node)
 	entities.add_child(inst)
-	#TODO warn if entity intersect with other
+	_check_node_placement(inst)
+	_update_selection_visual()
+
+func _check_node_placement(inst:Node2D)->bool:
+	var _res:bool=true
+	var doors:Array=[]
+	if(!inst):
+		return false
+	var entities = get_node(build_node)
+	var rect2=_get_tile_rect(inst)
+	for entity in entities.get_children():
+		if entity!=inst:
+			#check overlap
+			var rect =_get_tile_rect(entity)
+			if rect.intersects(rect2,false):	#TODO rectangle intersection test not good enough for all shapes
+				_res=false
+				break
+			var doorset=get_door_match(inst,entity)
+			if(doorset.size()>0):
+				doors.append(doorset)
+	if(_res):	#there has to be at least on door-match
+		_res = doors.size()>=1
+			
+	inst.set_meta("valid",_res)
+	return _res
+
+func get_door_match(entityA,entityB)->Array:
+	return []
 
 func _select_at(world_pos: Vector2):
 	var picked = _pick_node_at(world_pos)
@@ -125,7 +156,9 @@ func _start_or_select_move(world_pos: Vector2):
 func _rotate_at(world_pos: Vector2):
 	var picked = _pick_node_at(world_pos)
 	if picked:
-		picked.rotation_degrees = int(picked.rotation_degrees / 90 + 1) * 90
+		picked.rotation_degrees = int((floor(picked.rotation_degrees/90.0) + 1) * 90)%360
+	_check_node_placement(picked)
+	_update_selection_visual()
 
 func _delete_at(world_pos: Vector2):
 	var picked = _pick_node_at(world_pos)
@@ -134,50 +167,47 @@ func _delete_at(world_pos: Vector2):
 	if selected_node == picked:
 		selected_node = null
 
+func _get_tile_rect(inst:Node2D)->Rect2:
+	var sp = inst.get_node("Ly_Gnd") as TileMapLayer
+	var size:Vector2=sp.get_used_rect().size*sp.tile_set.tile_size.x
+	size=size.rotated(inst.global_rotation)
+	size=size.abs().round()
+	var rect=Rect2(inst.global_position-size*0.5,size)
+	return rect
+
 func _pick_node_at(world_pos: Vector2) -> Node2D:
 	# check Entities children from top to bottom
-	var entities = get_node("/root/Level/level_data")
+	var entities = get_node(build_node)
 	var children = entities.get_children()
 	for i in range(children.size() - 1, -1, -1):
 		var c = children[i]
 		if c is Node2D:
 			var local = c.to_global(Vector2.ZERO)
 			# simple bounding test using sprite rect if available
-			if c.has_node("Ly_Gnd"):
-				var sp = c.get_node("Ly_Gnd") as TileMapLayer
-				if(true):
-					var size:Vector2i=sp.get_used_rect().size*sp.tile_set.tile_size.x
-					sp.tile_set.tile_size.x
-					var rect=Rect2(c.global_position-size*0.5,size)
-					if rect.has_point(world_pos):
-							return c
-						# fallback: distance test
-					if c.global_position.distance_to(world_pos) < snap_size * 0.75:
+			if c.has_node("Ly_Gnd") && c.data.editable:
+				var rect=_get_tile_rect(c)
+				if rect.has_point(world_pos):
 						return c
-				else:
-					var tex = sp.texture
-					if tex:
-						var rect = Rect2(c.global_position - sp.texture.get_size() * 0.5 * c.scale, sp.texture.get_size() * c.scale)
-						if rect.has_point(world_pos):
-							return c
-						# fallback: distance test
-						if c.global_position.distance_to(world_pos) < snap_size * 0.75:
-							return c
+					# fallback: distance test
+				if c.global_position.distance_to(world_pos) < snap_size * 0.75:
+					return c
 	return null
 
 func _update_selection_visual():
 	# simple highlight by modulating sprite
-	var entities = get_node("/root/Level/level_data")
+	var entities = get_node(build_node)
 	for c in entities.get_children():
 		if c.has_node("Ly_Gnd"):
 			var sp = c.get_node("Ly_Gnd") as TileMapLayer
-			if c == selected_node:
+			if !c.get_meta("valid",true):
+				sp.modulate = Color(0.658, 0.0, 0.245, 1.0)
+			elif c == selected_node:
 				sp.modulate = Color(1,0.8,0.4,1)
 			else:
 				sp.modulate = Color(1,1,1,1)
 
 func _on_save_pressed():
-	var entities = get_node("/root/Level/level_data")
+	var entities = get_node(build_node)
 	var out = []
 	for c in entities.get_children():
 		var entry = {
@@ -190,7 +220,7 @@ func _on_save_pressed():
 		# collect custom properties if available
 		if c.has_method("editor_serialize"):
 			entry["properties"] = c.editor_serialize()
-			out.append(entry)
+		out.append(entry)
 	var dict = {"entities": out}
 	var json = JSON.stringify(dict)
 	var dir = DirAccess.open("user://levels")
@@ -213,12 +243,12 @@ func _on_load_pressed():
 	var json = f.get_as_text()
 	f.close()
 	var res = JSON.parse_string(json)
-	if res.error != OK:
+	if !res:
 		print("Failed to parse JSON")
 	return
 	var data = res.result
 	# clear entities
-	var entities = get_node("/root/Level/level_data")
+	var entities = get_node(build_node)
 	for c in entities.get_children():
 		c.queue_free()
 	for entry in data.get("entities", []):

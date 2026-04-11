@@ -22,8 +22,11 @@ func _ready() -> void:
 	for i in $level_data.get_children():
 		$level_data.remove_child(i)
 		i.queue_free()
-	$level_data.add_child(level_data)
-
+	#$level_data.add_child(level_data)
+	remove_child($level_data)
+	add_child(level_data)
+	$Player.spawner=$level_data.get_node_or_null("Spawn_Player")
+	player_revive()
 	pass
 
 func _input(event):

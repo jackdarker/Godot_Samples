@@ -11,7 +11,8 @@ const States = {
 	}
 
 @onready var anim = $AnimationTree
-@onready var initial_position = position
+var initial_position
+@export var spawner:Node2D = null
 #@onready var sprite:Node2D = $Sprite
 @onready var sprite_scale:float= sprite.scale.x
 var interactable:Node2D
@@ -26,6 +27,9 @@ func _ready() -> void:
 	Global.interact_touched.connect(Callable(self , "interact_touched"))
 	unequip("Head")
 	unequip("Weapon")
+	if spawner:
+		position=spawner.position
+	initial_position = position
 	pass
 	
 func old_physics_process(_delta: float) -> void:
@@ -63,9 +67,12 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 		area.pickup(self)
 	
 func revive() -> void:
-	position = initial_position
+	if spawner:
+		position=spawner.position
+	else:
+		position = initial_position
 	# Lives counter
-	lives = lives - 1
+	#lives = lives - 1
 
 func interact_touched(body:Node2D,touched:bool, Message:String)->void:
 	$UseIndicatore.text=Message

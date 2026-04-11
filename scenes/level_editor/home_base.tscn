@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=4 uid="uid://jv1lfihgasyb"]
+
+[ext_resource type="Script" uid="uid://dllm0012yvp0e" path="res://scenes/level_editor/data_building.gd" id="1_7w5rg"]
+[ext_resource type="TileSet" uid="uid://bn87te25rihm1" path="res://scenes/level_editor/ground_tileset.tres" id="1_id3dc"]
+[ext_resource type="Script" uid="uid://yq06salma10n" path="res://scenes/level_editor/building.gd" id="1_tx5w0"]
+
+[sub_resource type="Resource" id="Resource_d1bha"]
+script = ExtResource("1_7w5rg")
+editable = false
+metadata/_custom_type_script = "uid://dllm0012yvp0e"
+
+[node name="HomeBase" type="Node2D"]
+script = ExtResource("1_tx5w0")
+data = SubResource("Resource_d1bha")
+
+[node name="Ly_Gnd" type="TileMapLayer" parent="."]
+z_index = -1
+tile_map_data = PackedByteArray("AAD9//7/AgACAAIAAAD9////AgADAAAAAGD9/wAAAgADAAAAAGD9/wEAAgACAAIAAGD+//3/AgACAAIAAAD+//7/AgACAAQAAAD+////AgAAAAEAAAD+/wAAAgAAAAEAAAD+/wEAAgACAAUAAGD+/wIAAgACAAIAAGD///3/AgADAAAAAAD///7/AgAAAAEAAAD/////AgAAAAEAAAD//wAAAgAAAAEAAAD//wEAAgAAAAEAAAD//wIAAgADAAAAADAAAP3/AgADAAAAAAAAAP7/AgAAAAEAAAAAAP//AgAAAAEAAAAAAAAAAgAAAAEAAAAAAAEAAgAAAAEAAAAAAAIAAgADAAAAADABAP3/AgADAAAAAAABAP7/AgAAAAEAAAABAP//AgAAAAEAAAABAAAAAgAAAAEAAAABAAEAAgAAAAEAAAABAAIAAgADAAAAADACAP3/AgACAAAAAFACAP7/AgADAAAAAFACAP//AgADAAAAAFACAAAAAgAAAAEAAAACAAEAAgAAAAEAAAACAAIAAgACAAAAADA=")
+tile_set = ExtResource("1_id3dc")
