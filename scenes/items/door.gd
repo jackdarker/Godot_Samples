@@ -1,4 +1,4 @@
-extends Area2D
+class_name Door extends Area2D
 @export_multiline var Message:String = "open door" #
 
 func _ready() -> void:

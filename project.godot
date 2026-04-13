@@ -36,6 +36,7 @@ Items=""
 Persist=""
 Player=""
 Enemys=""
+Doors=""
 
 [input]
 

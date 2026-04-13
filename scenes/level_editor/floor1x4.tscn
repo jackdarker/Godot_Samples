@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://d1qlk0tqs6koc"]
+[gd_scene load_steps=6 format=4 uid="uid://d1qlk0tqs6koc"]
 
 [ext_resource type="TileSet" uid="uid://bn87te25rihm1" path="res://scenes/level_editor/ground_tileset.tres" id="1_1xgrj"]
 [ext_resource type="Script" uid="uid://dllm0012yvp0e" path="res://scenes/level_editor/data_building.gd" id="1_5fbm7"]
 [ext_resource type="Script" uid="uid://yq06salma10n" path="res://scenes/level_editor/building.gd" id="1_15xnp"]
+[ext_resource type="PackedScene" uid="uid://b5eb0eikc2g0s" path="res://scenes/items/door.tscn" id="4_lux46"]
 
 [sub_resource type="Resource" id="Resource_lux46"]
 script = ExtResource("1_5fbm7")
@@ -16,3 +17,13 @@ data = SubResource("Resource_lux46")
 z_index = -1
 tile_map_data = PackedByteArray("AAD+/wAAAgADAAAAADD//wAAAgADAAAAADAAAAAAAgADAAAAADABAAAAAgADAAAAADD+////AgADAAAAAAD/////AgADAAAAAAAAAP//AgADAAAAAAABAP//AgADAAAAAAA=")
 tile_set = ExtResource("1_1xgrj")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("4_lux46")]
+position = Vector2(-128, 0)
+rotation = 1.5707941
+
+[node name="Door2" parent="Doors" instance=ExtResource("4_lux46")]
+position = Vector2(128, 0)
+rotation = 1.5707941

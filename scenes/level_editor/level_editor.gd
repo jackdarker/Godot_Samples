@@ -134,8 +134,17 @@ func _check_node_placement(inst:Node2D)->bool:
 	inst.set_meta("valid",_res)
 	return _res
 
-func get_door_match(entityA,entityB)->Array:
-	return []
+# get overlapping doors
+func get_door_match(entityA:Building,entityB:Building)->Array:
+	var doorsA = entityA._possible_doors()
+	var doorsB = entityB._possible_doors()
+	var doors:Array=[]
+	for doorA:Door in doorsA:
+		for doorB:Door in doorsB:
+			if(doorB.overlaps_area(doorA)):
+				var pair=[doorA,doorB]
+				doors.push_back(pair)
+	return doors
 
 func _select_at(world_pos: Vector2):
 	var picked = _pick_node_at(world_pos)

@@ -16,12 +16,11 @@ size = Vector2(48, 8)
 [node name="Door" type="Area2D"]
 script = ExtResource("1_ednjy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+[node name="AreaCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_m86v8")
 
 [node name="Sprite" type="Node2D" parent="."]
-position = Vector2(0, 16)
+position = Vector2(0, 20)
 
 [node name="Open" type="Sprite2D" parent="Sprite"]
 visible = false
@@ -38,7 +37,6 @@ texture = ExtResource("4_rsvgx")
 physics_material_override = SubResource("PhysicsMaterial_ednjy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_grll7")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
