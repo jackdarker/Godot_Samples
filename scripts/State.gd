@@ -15,3 +15,6 @@ func Exit():
 	
 func Update(_delta:float):
 	pass
+
+#func _physics_process(delta: float) -> void:
+#	pass

@@ -1,12 +1,19 @@
-[gd_scene load_steps=5 format=4 uid="uid://qwdcmgvbtrg6"]
+[gd_scene load_steps=8 format=4 uid="uid://qwdcmgvbtrg6"]
 
 [ext_resource type="Script" uid="uid://dllm0012yvp0e" path="res://scenes/level_editor/data_building.gd" id="1_4wpmk"]
 [ext_resource type="Script" uid="uid://yq06salma10n" path="res://scenes/level_editor/building.gd" id="1_hq1ul"]
 [ext_resource type="TileSet" uid="uid://bn87te25rihm1" path="res://scenes/level_editor/ground_tileset.tres" id="1_r0wen"]
+[ext_resource type="PackedScene" uid="uid://brrfcowbdy1cg" path="res://scenes/level_editor/marker_door.tscn" id="4_20jri"]
+[ext_resource type="PackedScene" uid="uid://dt17oj6owgmr5" path="res://scenes/level_editor/marker_terminal.tscn" id="5_lfrty"]
 
 [sub_resource type="Resource" id="Resource_y6u6m"]
 script = ExtResource("1_4wpmk")
 metadata/_custom_type_script = "uid://dllm0012yvp0e"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_20jri"]
+vertices = PackedVector2Array(214, -214, 214, 214, -214, 214, -214, 38, -254, 38, -254, -38, -214, -38, -214, -214)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(0, 3, 6), PackedInt32Array(0, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-224, -224, 224, -224, 224, 224, -224, 224), PackedVector2Array(-264, -48, -224, -48, -224, 48, -264, 48)])
 
 [node name="Room4x4" type="Node2D"]
 script = ExtResource("1_hq1ul")
@@ -16,3 +23,28 @@ data = SubResource("Resource_y6u6m")
 z_index = -1
 tile_map_data = PackedByteArray("AAAAAAAAAgAAAAEAAAAAAAEAAgAAAAEAAAAAAAIAAgAAAAEAAAAAAAMAAgADAAAAADABAAAAAgAAAAEAAAABAAEAAgAAAAEAAAABAAIAAgAAAAEAAAABAAMAAgAAAAEAAAACAAAAAgAAAAEAAAACAAEAAgAAAAEAAAACAAIAAgAAAAEAAAACAAMAAgAAAAEAAAADAAAAAgAAAAEAAAADAAEAAgADAAAAAFADAAIAAgADAAAAAFADAAMAAgACAAAAADD8//z/AgACAAAAAAD8//3/AgADAAAAAGD8//7/AgADAAAAAGD8////AgAAAAEAAAD8/wAAAgAAAAEAAAD8/wEAAgADAAAAAGD8/wIAAgADAAAAAGD8/wMAAgACAAAAAGD9//z/AgADAAAAAAD9//3/AgAAAAEAAAD9//7/AgAAAAEAAAD9////AgAAAAEAAAD9/wAAAgAAAAEAAAD9/wEAAgAAAAEAAAD9/wIAAgAAAAEAAAD9/wMAAgADAAAAADD+//z/AgADAAAAAAD+//3/AgAAAAEAAAD+//7/AgAAAAEAAAD+////AgAAAAEAAAD+/wAAAgAAAAEAAAD+/wEAAgAAAAEAAAD+/wIAAgAAAAEAAAD+/wMAAgADAAAAADD///z/AgADAAAAAAD///3/AgAAAAEAAAD///7/AgAAAAEAAAD/////AgAAAAEAAAD//wAAAgAAAAEAAAD//wEAAgAAAAEAAAD//wIAAgAAAAEAAAD//wMAAgADAAAAADAAAPz/AgADAAAAAAAAAP3/AgAAAAEAAAAAAP7/AgAAAAEAAAAAAP//AgAAAAEAAAABAPz/AgAAAAEAAAABAP3/AgAAAAEAAAABAP7/AgAAAAEAAAABAP//AgAAAAEAAAACAPz/AgAAAAEAAAACAP3/AgAAAAEAAAACAP7/AgAAAAEAAAACAP//AgAAAAEAAAADAPz/AgACAAAAAFADAP3/AgADAAAAAFADAP7/AgADAAAAAFADAP//AgAAAAEAAAA=")
 tile_set = ExtResource("1_r0wen")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Mrk_Door" parent="Doors" instance=ExtResource("4_20jri")]
+position = Vector2(-256, 0)
+rotation = 1.5707941
+
+[node name="Mrk_Door4" parent="Doors" instance=ExtResource("4_20jri")]
+position = Vector2(128, -255.99998)
+
+[node name="Mrk_Door3" parent="Doors" instance=ExtResource("4_20jri")]
+position = Vector2(256, 0)
+rotation = 1.5707941
+
+[node name="Mrk_Door2" parent="Doors" instance=ExtResource("4_20jri")]
+position = Vector2(128, 256)
+
+[node name="Terminals" type="Node2D" parent="."]
+
+[node name="Mrk_Door" parent="Terminals" instance=ExtResource("5_lfrty")]
+position = Vector2(-128, -128)
+rotation = 1.5707941
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_20jri")

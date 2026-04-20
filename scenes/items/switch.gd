@@ -1,14 +1,14 @@
 extends Area2D
 
 @export_multiline var Message:String = "use me" #
-signal switch(on:bool)
+signal switch(on:bool,switch:Node2D)
 
 func _ready() -> void:
 	$Sprite/State1.visible=false
 	pass # Replace with function body.
 
 func useMe()->void:
-	emit_signal("switch", true)
+	emit_signal("switch", true,self)
 	$Sprite/State1.visible=true
 	pass
 

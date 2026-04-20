@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bt6th05osre1t"]
+[gd_scene load_steps=18 format=3 uid="uid://bt6th05osre1t"]
 
 [ext_resource type="Script" uid="uid://dnri1jdwuxn1s" path="res://scenes/Enemy1/enemy.gd" id="1_l70d0"]
 [ext_resource type="Theme" uid="uid://dyoqwqakkfsn2" path="res://scenes/style_menu.tres" id="2_2jipy"]
 [ext_resource type="Texture2D" uid="uid://qw57hrgxteau" path="res://assets/sprites/Kenney/PNG/Default/character_handRed.png" id="3_2t6jo"]
 [ext_resource type="Texture2D" uid="uid://dorbnubeq2ukk" path="res://assets/sprites/Kenney/PNG/Default/character_squareYellow.png" id="4_f61m6"]
+[ext_resource type="Script" uid="uid://nlt4ykwtlyqe" path="res://scenes/Enemy1/enemy_move.gd" id="5_607pl"]
 [ext_resource type="Texture2D" uid="uid://dlnk55ayxqp3h" path="res://assets/sprites/Kenney/PNG/Default/character_handPurple.png" id="5_onbfo"]
 [ext_resource type="Script" uid="uid://ctprgwxhabcci" path="res://scripts/FSM.gd" id="7_yokpx"]
 [ext_resource type="Script" uid="uid://dh15pd4jgqaan" path="res://scenes/Enemy1/enemy_idle.gd" id="8_0pqx2"]
@@ -14,7 +15,7 @@
 radius = 32.1403
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5wm3"]
-radius = 149.333
+radius = 64.0
 
 [sub_resource type="Animation" id="Animation_4ewtk"]
 length = 0.001
@@ -234,6 +235,9 @@ animator = NodePath("../../AnimationPlayer")
 script = ExtResource("9_k27ww")
 animator = NodePath("../../AnimationPlayer")
 
+[node name="enemy_move" type="Node" parent="FSM"]
+script = ExtResource("5_607pl")
+
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4
 
@@ -245,7 +249,7 @@ debug_color = Color(0.933333, 0.231373, 0.298039, 0.356863)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6al3p")
+&"": SubResource("AnimationLibrary_6al3p")
 }
 
 [node name="Sprite" type="Node2D" parent="."]
@@ -303,6 +307,12 @@ grow_horizontal = 2
 theme = ExtResource("2_2jipy")
 value = 50.0
 show_percentage = false
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.16470589, 1, 1, 1)
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

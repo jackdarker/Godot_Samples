@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://brrfcowbdy1cg"]
+
+[ext_resource type="Texture2D" uid="uid://b0doeyefll2wm" path="res://assets/sprites/Kenney/PNG/Default (64px)/door_closed.png" id="3_rf51c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m86v8"]
+size = Vector2(48, 24)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ednjy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grll7"]
+size = Vector2(48, 8)
+
+[node name="Mrk_Door" type="Area2D"]
+
+[node name="AreaCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m86v8")
+disabled = true
+
+[node name="Sprite" type="Node2D" parent="."]
+position = Vector2(0, 20)
+
+[node name="Closed" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("3_rf51c")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ednjy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_grll7")
+disabled = true

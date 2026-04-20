@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://1yh6gn12isyn"]
+[gd_scene load_steps=6 format=4 uid="uid://1yh6gn12isyn"]
 
 [ext_resource type="TileSet" uid="uid://bn87te25rihm1" path="res://scenes/level_editor/ground_tileset.tres" id="1_0ehi0"]
 [ext_resource type="Script" uid="uid://yq06salma10n" path="res://scenes/level_editor/building.gd" id="1_h3bid"]
 [ext_resource type="Script" uid="uid://dllm0012yvp0e" path="res://scenes/level_editor/data_building.gd" id="2_p1qcm"]
+[ext_resource type="PackedScene" uid="uid://b5eb0eikc2g0s" path="res://scenes/items/door.tscn" id="4_qr7i2"]
 
 [sub_resource type="Resource" id="Resource_qr7i2"]
 script = ExtResource("2_p1qcm")
@@ -17,7 +18,14 @@ z_index = -1
 tile_map_data = PackedByteArray("AAAAAAAAAgACAAUAAAAAAAEAAgAAAAEAAAAAAAIAAgAAAAEAAAAAAAMAAgADAAAAADABAAAAAgAAAAEAAAABAAEAAgAAAAEAAAABAAIAAgAAAAEAAAABAAMAAgAAAAEAAAACAAAAAgAAAAEAAAACAAEAAgAAAAEAAAACAAIAAgAAAAEAAAACAAMAAgAAAAEAAAADAAAAAgAAAAEAAAADAAEAAgADAAAAAFADAAIAAgADAAAAAFADAAMAAgACAAAAADD8/wEAAgADAAAAAGD8/wIAAgADAAAAAGD8/wMAAgACAAAAAGD9/wEAAgAAAAEAAAD9/wIAAgAAAAEAAAD9/wMAAgADAAAAADD+/wEAAgAAAAEAAAD+/wIAAgAAAAEAAAD+/wMAAgADAAAAADD//wAAAgADAAAAAAD//wEAAgAAAAEAAAD//wIAAgAAAAEAAAD//wMAAgADAAAAADABAPz/AgAAAAEAAAABAP3/AgAAAAEAAAABAP7/AgAAAAEAAAABAP//AgAAAAEAAAACAPz/AgAAAAEAAAACAP3/AgAAAAEAAAACAP7/AgAAAAEAAAACAP//AgAAAAEAAAADAPz/AgACAAAAAFADAP3/AgADAAAAAFADAP7/AgADAAAAAFADAP//AgAAAAEAAAD+/wAAAgADAAAAAAD9/wAAAgADAAAAAAD8/wAAAgACAAAAAAAAAPz/AgACAAAAAAAAAP3/AgADAAAAAGAAAP7/AgADAAAAAGAAAP//AgADAAAAAGA=")
 tile_set = ExtResource("1_0ehi0")
 
-[node name="Ly_Door" type="TileMapLayer" parent="."]
-z_index = -1
-tile_map_data = PackedByteArray("AAABAPz/AgALAAAAAAACAPz/AgALAAAAAAADAP//AgALAAAAAFADAAAAAgALAAAAAFABAAMAAgALAAAAADACAAMAAgALAAAAADA=")
-tile_set = ExtResource("1_0ehi0")
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("4_qr7i2")]
+position = Vector2(256, 0)
+rotation = 1.5707941
+
+[node name="Door3" parent="Doors" instance=ExtResource("4_qr7i2")]
+position = Vector2(128, 256)
+
+[node name="Door4" parent="Doors" instance=ExtResource("4_qr7i2")]
+position = Vector2(128, -256)

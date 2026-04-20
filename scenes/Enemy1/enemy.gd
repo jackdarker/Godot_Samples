@@ -5,6 +5,13 @@ var player_in_range = false
 
 @export var attack_node : Node
 @export var chase_node : Node
+@export var target:Node2D
+
+func init_character():
+	super()
+
+func _go_here(_active,_target:Node2D):
+	target=_target
 
 #After finishing an attack, we return here to determine our next action based on the players proximity
 func finished_attacking():

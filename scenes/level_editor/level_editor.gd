@@ -220,9 +220,8 @@ func _on_save_pressed():
 	var out = []
 	for c in entities.get_children():
 		var entry = {
-		"scene": c.filename if "filename" in c else "",
+		"scene": c.scene_file_path,
 		"path": c.filename if "filename" in c else "", # Godot Node2D instances don't expose filename; we'll serialize by type name
-		"type": c.name,
 		"position": [c.position.x, c.position.y],
 		"rotation_degrees": c.rotation_degrees
 		}
@@ -254,19 +253,15 @@ func _on_load_pressed():
 	var res = JSON.parse_string(json)
 	if !res:
 		print("Failed to parse JSON")
-	return
-	var data = res.result
+
+	var data = res
 	# clear entities
 	var entities = get_node(build_node)
 	for c in entities.get_children():
 		c.queue_free()
 	for entry in data.get("entities", []):
-		var tname = entry.get("type", "Room")
-		var scene: PackedScene = null
-		if tname == "Room":
-			scene = current_stamp	#TODO
-		elif tname == "Floorway":	
-			scene = current_stamp#TODO
+		var tname = entry.get("scene", "")
+		var scene: PackedScene = load(tname)
 		if scene:
 			var inst = scene.instantiate()
 			inst.position = Vector2(entry["position"][0], entry["position"][1])
