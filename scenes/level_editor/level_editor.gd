@@ -23,7 +23,7 @@ var ghost: Node2D = null
 var dragging: bool = false
 var drag_offset := Vector2.ZERO
 
-const build_node:String = "/root/Level/level_data/buildings"
+
 
 func _ready():
 	# Wire UI
@@ -43,7 +43,7 @@ func _ready():
 	ghost = Node2D.new()
 	ghost.visible = false
 	add_child(ghost)
-	_on_building_sel("floor1x4")
+	_on_building_sel("room4x4")
 	lst_build.visible=false
 	self.visible=false
 
@@ -106,7 +106,7 @@ func _place_node_at(pos: Vector2):
 		return
 	var inst = scene.instantiate()
 	inst.position = pos
-	var entities = get_node(build_node)
+	var entities = get_node(Global.build_node)
 	entities.add_child(inst)
 	_check_node_placement(inst)
 	_update_selection_visual()
@@ -116,7 +116,7 @@ func _check_node_placement(inst:Node2D)->bool:
 	var doors:Array=[]
 	if(!inst):
 		return false
-	var entities = get_node(build_node)
+	var entities = get_node(Global.build_node)
 	var rect2=_get_tile_rect(inst)
 	for entity in entities.get_children():
 		if entity!=inst:
@@ -139,8 +139,8 @@ func get_door_match(entityA:Building,entityB:Building)->Array:
 	var doorsA = entityA._possible_doors()
 	var doorsB = entityB._possible_doors()
 	var doors:Array=[]
-	for doorA:Door in doorsA:
-		for doorB:Door in doorsB:
+	for doorA in doorsA:
+		for doorB in doorsB:
 			if(doorB.overlaps_area(doorA)):
 				var pair=[doorA,doorB]
 				doors.push_back(pair)
@@ -186,7 +186,7 @@ func _get_tile_rect(inst:Node2D)->Rect2:
 
 func _pick_node_at(world_pos: Vector2) -> Node2D:
 	# check Entities children from top to bottom
-	var entities = get_node(build_node)
+	var entities = get_node(Global.build_node)
 	var children = entities.get_children()
 	for i in range(children.size() - 1, -1, -1):
 		var c = children[i]
@@ -204,7 +204,7 @@ func _pick_node_at(world_pos: Vector2) -> Node2D:
 
 func _update_selection_visual():
 	# simple highlight by modulating sprite
-	var entities = get_node(build_node)
+	var entities = get_node(Global.build_node)
 	for c in entities.get_children():
 		if c.has_node("Ly_Gnd"):
 			var sp = c.get_node("Ly_Gnd") as TileMapLayer
@@ -216,7 +216,7 @@ func _update_selection_visual():
 				sp.modulate = Color(1,1,1,1)
 
 func _on_save_pressed():
-	var entities = get_node(build_node)
+	var entities = get_node(Global.build_node)
 	var out = []
 	for c in entities.get_children():
 		var entry = {
@@ -256,7 +256,7 @@ func _on_load_pressed():
 
 	var data = res
 	# clear entities
-	var entities = get_node(build_node)
+	var entities = get_node(Global.build_node)
 	for c in entities.get_children():
 		c.queue_free()
 	for entry in data.get("entities", []):

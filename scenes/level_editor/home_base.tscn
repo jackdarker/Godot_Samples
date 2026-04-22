@@ -12,10 +12,10 @@ editable = false
 metadata/_custom_type_script = "uid://dllm0012yvp0e"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_y3bs7"]
-vertices = PackedVector2Array(159, 17, 191, 17, 191, 111, 159, 111, 159, 159, -63.546875, 159, -151, 63.601563, -151, -63.601563, -63.546875, -159, 159, -159)
+vertices = PackedVector2Array(160, 24, 192, 24, 192, 104, 160, 104, 160, 160, -64, 160, -152, 64, -152, -64, -64, -160, 160, -160)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 7, 8, 9, 0, 5), PackedInt32Array(5, 0, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -160, 160, -160, 160, 160, -64, 160, -152, 64, -152, -64), PackedVector2Array(160, 16, 192, 16, 192, 112, 160, 112)])
-agent_radius = 1.0
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -160, 160, -160, 160, 160, -64, 160, -152, 64, -152, -64), PackedVector2Array(160, 24, 192, 24, 192, 104, 160, 104)])
+agent_radius = 0.0
 
 [node name="HomeBase" type="Node2D"]
 script = ExtResource("1_tx5w0")

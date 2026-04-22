@@ -12,6 +12,8 @@ signal bonus_changed(change) #fired when bonus multiplier increased
 signal player_death() 
 signal interact_touched(body:Node2D, touched:bool, Message:String) #emitted by interactable to character
 
+const build_node:String = "/root/Level/level_data/buildings"
+
 func scoreChange(change,pill):
 	score+=change
 	pills-=pill
@@ -36,10 +38,22 @@ func enter_mode(mode:MODE):
 		#get_tree().paused = true
 		get_node("/root/Level/LevelEditor").visible = true
 	else:
+		if editing:
+			applyMapChanges()
 		editing = false
 		#get_tree().paused = false
 		get_node("/root/Level/LevelEditor").visible = false
 		selected_node = null
+
+func applyMapChanges():
+	var _enemy=get_node("/root/Level/level_data/Enemy")
+	var entities = get_node(Global.build_node)
+	for entity in entities.get_children():
+		var _switch=entity.get_node_or_null("Terminals/Switch")
+		if _switch:
+			_switch.switch.connect(_enemy._go_here)		#TODO
+		#mark entity as un-editable
+
 #endregion
 
 func goto_scene(path):

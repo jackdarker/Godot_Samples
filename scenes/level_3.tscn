@@ -25,18 +25,20 @@ gizmo_extents = 23.0
 position = Vector2(192, 1088)
 
 [node name="Room4x4" parent="buildings" instance=ExtResource("3_p6vls")]
-position = Vector2(632, 1152)
+position = Vector2(640, 1152)
 
-[node name="Switch" parent="buildings" instance=ExtResource("5_hhfj6")]
-position = Vector2(560, 1128)
+[node name="Room4x5" parent="buildings" instance=ExtResource("3_p6vls")]
+position = Vector2(768, 1664)
+rotation = 1.5707941
 
 [node name="Enemy" parent="." instance=ExtResource("4_1pn4d")]
 position = Vector2(192, 1184)
 
-[node name="NavigationLink2D" type="NavigationLink2D" parent="."]
-start_position = Vector2(440, 1152)
-end_position = Vector2(352, 1160)
+[node name="Switch2" parent="." instance=ExtResource("5_hhfj6")]
+position = Vector2(640, 1640)
 
-[connection signal="switch" from="buildings/Switch" to="Enemy" method="_go_here"]
+[connection signal="switch" from="Switch2" to="Enemy" method="_go_here"]
 
 [editable path="buildings/HomeBase"]
+[editable path="buildings/Room4x4"]
+[editable path="buildings/Room4x5"]

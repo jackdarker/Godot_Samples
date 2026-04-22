@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 	if NavigationServer2D.map_get_iteration_id(navigation_agent.get_navigation_map()) == 0:
 		return
 	if navigation_agent.is_navigation_finished():
+		state_transition.emit(self, "enemy_idle")
 		return
 
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()

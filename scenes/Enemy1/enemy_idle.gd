@@ -3,6 +3,7 @@ extends State
 @export var animator : AnimationPlayer
 
 func Enter():
+	get_parent().get_parent().target=null
 	animator.play("idle")
 	pass
 
