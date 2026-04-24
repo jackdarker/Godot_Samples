@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://s88ue8elxc54"]
+[gd_scene load_steps=6 format=3 uid="uid://s88ue8elxc54"]
 
+[ext_resource type="Script" uid="uid://ctdiur3lpl2gx" path="res://scenes/items/ladder.gd" id="1_kinr7"]
 [ext_resource type="Texture2D" uid="uid://ditv7sbwt06dk" path="res://assets/sprites/Kenney/PNG/Default (64px)/trap_door.png" id="1_qatp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m86v8"]
@@ -11,6 +12,7 @@ size = Vector2(32, 32)
 size = Vector2(48, 8)
 
 [node name="Mrk_Hatch" type="Area2D"]
+script = ExtResource("1_kinr7")
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -26,3 +28,6 @@ physics_material_override = SubResource("PhysicsMaterial_ednjy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_grll7")
 disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

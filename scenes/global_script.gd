@@ -47,12 +47,16 @@ func enter_mode(mode:MODE):
 
 func applyMapChanges():
 	var _enemy=get_node("/root/Level/level_data/Enemy")
+	
 	var entities = get_node(Global.build_node)
 	for entity in entities.get_children():
 		var _switch=entity.get_node_or_null("Terminals/Switch")
 		if _switch:
 			_switch.switch.connect(_enemy._go_here)		#TODO
-		#mark entity as un-editable
+		var _stair=entity.get_node_or_null("Stairs/Stair")
+		if _stair:
+			_stair.switch.connect(get_node("/root/Level").change_floor)		#TODO
+		#TODO mark entity as un-editable
 
 #endregion
 
