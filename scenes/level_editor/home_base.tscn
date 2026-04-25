@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://jv1lfihgasyb"]
+[gd_scene load_steps=7 format=4 uid="uid://jv1lfihgasyb"]
 
 [ext_resource type="Script" uid="uid://dllm0012yvp0e" path="res://scenes/level_editor/data_building.gd" id="1_7w5rg"]
 [ext_resource type="TileSet" uid="uid://bn87te25rihm1" path="res://scenes/level_editor/ground_tileset.tres" id="1_id3dc"]
 [ext_resource type="Script" uid="uid://yq06salma10n" path="res://scenes/level_editor/building.gd" id="1_tx5w0"]
 [ext_resource type="PackedScene" uid="uid://brrfcowbdy1cg" path="res://scenes/level_editor/marker_door.tscn" id="4_d1bha"]
-[ext_resource type="PackedScene" uid="uid://dt17oj6owgmr5" path="res://scenes/level_editor/marker_terminal.tscn" id="5_y3bs7"]
 
 [sub_resource type="Resource" id="Resource_d1bha"]
 script = ExtResource("1_7w5rg")
@@ -26,17 +25,13 @@ z_index = -1
 tile_map_data = PackedByteArray("AAD9//7/AgACAAIAAAD9////AgADAAAAAGD9/wAAAgADAAAAAGD9/wEAAgACAAIAAGD+//3/AgACAAIAAAD+//7/AgACAAQAAAD+////AgAAAAEAAAD+/wAAAgAAAAEAAAD+/wEAAgACAAUAAGD+/wIAAgACAAIAAGD///3/AgADAAAAAAD///7/AgAAAAEAAAD/////AgAAAAEAAAD//wAAAgAAAAEAAAD//wEAAgAAAAEAAAD//wIAAgADAAAAADAAAP3/AgADAAAAAAAAAP7/AgAAAAEAAAAAAP//AgAAAAEAAAAAAAAAAgAAAAEAAAAAAAEAAgAAAAEAAAAAAAIAAgADAAAAADABAP3/AgADAAAAAAABAP7/AgAAAAEAAAABAP//AgAAAAEAAAABAAAAAgAAAAEAAAABAAEAAgAAAAEAAAABAAIAAgADAAAAADACAP3/AgACAAAAAFACAP7/AgADAAAAAFACAP//AgADAAAAAFACAAAAAgAAAAEAAAACAAEAAgAAAAEAAAACAAIAAgACAAAAADA=")
 tile_set = ExtResource("1_id3dc")
 
-[node name="Doors" type="Node2D" parent="."]
+[node name="Doors" type="Node2D" parent="Ly_Gnd"]
 
-[node name="Mrk_Door" parent="Doors" instance=ExtResource("4_d1bha")]
+[node name="Mrk_Door" parent="Ly_Gnd/Doors" instance=ExtResource("4_d1bha")]
 position = Vector2(192, 64)
 rotation = 1.5707941
 
-[node name="Terminals" type="Node2D" parent="."]
+[node name="Terminals" type="Node2D" parent="Ly_Gnd"]
 
-[node name="Mrk_Terminal" parent="Terminals" instance=ExtResource("5_y3bs7")]
-position = Vector2(96, -96)
-rotation = 1.5707941
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="Nav" type="NavigationRegion2D" parent="Ly_Gnd"]
 navigation_polygon = SubResource("NavigationPolygon_y3bs7")

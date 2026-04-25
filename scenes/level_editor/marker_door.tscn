@@ -22,6 +22,7 @@ position = Vector2(0, 20)
 texture = ExtResource("3_rf51c")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_ednjy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

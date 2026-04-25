@@ -1,26 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqxnxutfssmtw"]
+[gd_scene load_steps=4 format=3 uid="uid://bqxnxutfssmtw"]
 
-[ext_resource type="PackedScene" uid="uid://jv1lfihgasyb" path="res://scenes/level_editor/home_base.tscn" id="2_h23n6"]
-[ext_resource type="PackedScene" uid="uid://qwdcmgvbtrg6" path="res://scenes/level_editor/room4x4.tscn" id="3_p6vls"]
+[ext_resource type="PackedScene" uid="uid://3iybnpbl14go" path="res://scenes/level_editor/room4x4.tscn" id="3_p6vls"]
 [ext_resource type="PackedScene" uid="uid://bt6th05osre1t" path="res://scenes/Enemy1/enemy.tscn" id="4_1pn4d"]
 [ext_resource type="PackedScene" uid="uid://dpm4jyojw7l6x" path="res://scenes/items/switch.tscn" id="5_hhfj6"]
 
 [node name="level_data" type="Node2D"]
 
 [node name="Spawn_Player" type="Marker2D" parent="."]
-position = Vector2(116, 1080)
+position = Vector2(536, 1088)
 gizmo_extents = 23.0
 
 [node name="buildings" type="Node" parent="."]
-
-[node name="HomeBase" parent="buildings" instance=ExtResource("2_h23n6")]
-position = Vector2(192, 1088)
 
 [node name="Room4x4" parent="buildings" instance=ExtResource("3_p6vls")]
 position = Vector2(640, 1152)
 
 [node name="Enemy" parent="." instance=ExtResource("4_1pn4d")]
-position = Vector2(192, 1184)
+position = Vector2(760, 1056)
 
 [node name="Switch2" parent="." instance=ExtResource("5_hhfj6")]
 position = Vector2(640, 1640)

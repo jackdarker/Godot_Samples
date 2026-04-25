@@ -23,8 +23,6 @@ var ghost: Node2D = null
 var dragging: bool = false
 var drag_offset := Vector2.ZERO
 
-
-
 func _ready():
 	# Wire UI
 	#edit_toggle.pressed = false
@@ -74,7 +72,7 @@ func snap_pos(p: Vector2) -> Vector2:
 	return Vector2(round(p.x / s) * s, round(p.y / s) * s)
 
 func _unhandled_input(event):
-	if not Global.editing:
+	if not self.visible:
 		return
 	if event is InputEventMouseMotion and dragging and current_tool == "move" and selected_node:
 		var pos = snap_pos(world_mouse_pos() + drag_offset)
@@ -214,6 +212,27 @@ func _update_selection_visual():
 				sp.modulate = Color(1,0.8,0.4,1)
 			else:
 				sp.modulate = Color(1,1,1,1)
+
+## before leaving edit-mode apply all changes and cleanup
+func applyMapChanges():
+	var _enemy=get_node("/root/Level/level_data/Enemy")	#TODO
+	
+	var entities = get_node(Global.build_node)
+	for entity in entities.get_children():
+		var node=entity.get_node_or_null("Ly_Gnd/Terminals")
+		var _switches=node.get_children() if node else []
+		node=entity.get_node_or_null("Ly_Crawl/Terminals")
+		_switches.append_array(node.get_children() if node else [])
+		for _switch in _switches:
+			_switch.switch.connect(_enemy._go_here)		#TODO
+		# connect stairs
+		var _stair=entity.get_node_or_null("Stairs/Stair")
+		if _stair:
+			_stair.switch.connect(get_node("/root/Level").change_floor)		#TODO
+		#TODO connect doors
+		
+		#TODO mark entity as un-editable
+
 
 func _on_save_pressed():
 	var entities = get_node(Global.build_node)

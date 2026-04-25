@@ -93,7 +93,9 @@ attack_2={
 [layer_names]
 
 2d_physics/layer_1="Ground"
+2d_navigation/layer_1="Ground"
 2d_physics/layer_2="Items"
+2d_navigation/layer_2="Crawl"
 2d_physics/layer_3="Vision"
 
 [rendering]

@@ -7,7 +7,8 @@ signal switch(new_floor:int)
 
 func _ready() -> void:
 	$Sprite/Closed.visible=true
-
+	#var default_map_rid: RID = get_world_2d().get_navigation_map()
+	
 func useMe()->void:
 	emit_signal("switch", target_floor)
 	$Sprite/Closed.visible=true

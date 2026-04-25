@@ -27,36 +27,17 @@ var current_scene = null
 enum MODE{SIM,BUILD}
 signal mode_change(mode:MODE)
 
-var editing = false
-var current_tool = "place"
-var snap_size = 32
-var selected_node = null
-
-func enter_mode(mode:MODE):
-	if mode==MODE.BUILD:
-		editing = true
-		#get_tree().paused = true
-		get_node("/root/Level/LevelEditor").visible = true
+func floor2nav(floor:int)->int:
+	if(floor==0):
+		return 1
 	else:
-		if editing:
-			applyMapChanges()
-		editing = false
-		#get_tree().paused = false
-		get_node("/root/Level/LevelEditor").visible = false
-		selected_node = null
+		return 2
 
-func applyMapChanges():
-	var _enemy=get_node("/root/Level/level_data/Enemy")
-	
-	var entities = get_node(Global.build_node)
-	for entity in entities.get_children():
-		var _switch=entity.get_node_or_null("Terminals/Switch")
-		if _switch:
-			_switch.switch.connect(_enemy._go_here)		#TODO
-		var _stair=entity.get_node_or_null("Stairs/Stair")
-		if _stair:
-			_stair.switch.connect(get_node("/root/Level").change_floor)		#TODO
-		#TODO mark entity as un-editable
+func nav2floor(navbits:int)->int:
+	if(navbits & 0x1):
+		return 0
+	else:
+		return 1
 
 #endregion
 
