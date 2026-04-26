@@ -33,22 +33,28 @@ func _find_stairs()->Array:
 func _findMultiFloorPath():
 	var mob_floor=_get_mob_floor()
 	var target_floor=_get_target_floor()
-	var map_rid=navigation_agent.get_navigation_map()	#there is only efault map
+	#var map_rid=navigation_agent.get_navigatison_map()	#there is only efault map
 	# if start & target are on the same floor...
 	if(mob_floor==target_floor):
 		# ...and there is a route on this NavMap we only need to add it as single navMapStep
 		navMapSteps=[{"target":target, "floor":target_floor}]
+		navigation_agent.set_navigation_map(Global.map_gnd if target_floor==0 else Global.map_crawl)
 		# ...but if not?	TODO
 	else:
 	# else if start & target are on different BUT ADJOINING floors
 		var stairs=_find_stairs()
 		var stair=stairs[0]
 	# ...look for a ladder; if there is a route from ladder to target and from start to ladder we will take it
+		var map_rid= Global.map_gnd if mob_floor==0 else Global.map_crawl
 		var step1:=NavigationServer2D.map_get_path(map_rid,player.global_position,stair.global_position,false,navigation_agent.navigation_layers)
+		var re=NavigationServer2D.map_get_regions(map_rid)
+		map_rid= Global.map_gnd if target_floor==0 else Global.map_crawl
+		re=NavigationServer2D.map_get_regions(map_rid)
 		var step2:=NavigationServer2D.map_get_path(map_rid,stair.global_position,target.global_position,false,Global.floor2nav(target_floor))
 	#	 add navMapStep for each path
 		if(step1.size()>0 && step2.size()>0):
 			navMapSteps=[{"target":stair, "floor":mob_floor},{"target":target, "floor":target_floor}]
+			navigation_agent.set_navigation_map(Global.map_gnd if mob_floor==0 else Global.map_crawl)
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -61,6 +67,7 @@ func _physics_process(delta: float) -> void:
 			state_transition.emit(self, "enemy_idle")
 		else:
 			var next=navMapSteps.pop_front()
+			navigation_agent.set_navigation_map(Global.map_gnd if next.floor==0 else Global.map_crawl)
 			navigation_agent.navigation_layers=Global.floor2nav(next.floor)
 			navigation_agent.set_target_position(next.target.global_position)
 		return

@@ -9,6 +9,7 @@ var player_in_range = false
 
 func init_character():
 	super()
+	%NavAgent.set_navigation_map(Global.map_gnd)
 
 func _go_here(_active,_target:Node2D):
 	target=_target

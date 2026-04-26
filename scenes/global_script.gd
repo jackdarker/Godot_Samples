@@ -13,6 +13,8 @@ signal player_death()
 signal interact_touched(body:Node2D, touched:bool, Message:String) #emitted by interactable to character
 
 const build_node:String = "/root/Level/level_data/buildings"
+var map_gnd
+var map_crawl
 
 func scoreChange(change,pill):
 	score+=change
@@ -65,9 +67,18 @@ func _deferred_goto_scene(path):
 	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
 	get_tree().current_scene = current_scene
 
+func _map_changed(map):
+	print(str(map)+":"+str(NavigationServer2D.map_get_iteration_id(map)))
+	pass 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var root = get_tree().root
+	NavigationServer2D.map_changed.connect(_map_changed)
+	map_gnd = NavigationServer2D.map_create()
+	map_crawl= NavigationServer2D.map_create()
+	NavigationServer2D.map_set_active(map_gnd, true)
+	NavigationServer2D.map_set_active(map_crawl, true)
 	# Using a negative index counts from the end, so this gets the last child node of `root`.
 	current_scene = root.get_child(-1)
 	if(SaveLoad.load_highscore(highscores)<0):
